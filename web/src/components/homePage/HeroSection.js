@@ -12,8 +12,8 @@ function HeroSection() {
         <div className="hero__wrapper">
           <div className="left">
             <h1 className="hero__heading">
-              Empowering rural communities to sustainability through
-              grassroots-driven environmentally friendly intervention methods
+              Empowering sustainability through grassroots-driven
+              environmentally friendly intervention methods
             </h1>
             <ParagraphText className="hero__text">
               We proactively leverage cutting edge solutions & collective effort
