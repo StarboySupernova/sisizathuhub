@@ -1,10 +1,10 @@
-import { MdStar } from 'react-icons/md';
+import { FcRating } from 'react-icons/fc';
 
 export default {
   name: 'spotlight',
   title: 'Featured',
   type: 'document',
-  icon: MdStar,
+  icon: FcRating,
   fields: [
     {
       title: 'Title',
@@ -13,7 +13,7 @@ export default {
     },
     {
       name: 'blogs',
-      title: 'Featured/Trending on DEMT',
+      title: 'Upcoming News, Updates & Events',
       type: 'array',
       of: [
         {

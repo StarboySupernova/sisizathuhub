@@ -1,10 +1,10 @@
-import { MdPerson } from 'react-icons/md';
+import { FcBusinessman } from 'react-icons/fc';
 
 export default {
   name: 'author',
   title: 'Author',
   type: 'document',
-  icon: MdPerson,
+  icon: FcBusinessman,
   fields: [
     {
       name: 'name',

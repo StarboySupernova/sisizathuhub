@@ -1,22 +1,22 @@
-import { FcApproval } from 'react-icons/fc';
+import { FcComboChart } from 'react-icons/fc';
 
 export default {
-  name: 'activity',
-  title: 'Activity',
+  name: 'objective',
+  title: 'Objective',
   type: 'document',
-  icon: FcApproval,
+  icon: FcComboChart,
   fields: [
     {
-      name: 'title',
-      title: 'Title',
-      type: 'string',
+      name: 'description',
+      title: 'Description',
+      type: 'richText',
     },
     {
       name: 'slug',
       title: 'Tag',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'description',
         maxLength: 96,
       },
     },
@@ -24,11 +24,6 @@ export default {
       name: 'coverImage',
       title: 'Cover Image',
       type: 'customImage',
-    },
-    {
-      name: 'description',
-      title: 'Description',
-      type: 'normalText',
     },
     {
       title: 'Category',
@@ -39,13 +34,13 @@ export default {
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'description',
       image: 'coverImage',
       slug: 'slug',
     },
-    prepare({ title, image, slug }) {
+    prepare({ description, image, slug }) {
       return {
-        title,
+        title: description,
         media: image,
         subtitle: slug.current,
       };

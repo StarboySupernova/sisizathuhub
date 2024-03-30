@@ -9,6 +9,8 @@ import category from './documents/category';
 import author from './documents/author';
 import activity from './documents/activity';
 import spotlight from './documents/spotlight';
+import objective from './documents/objective';
+import value from './documents/value';
 
 // import object
 import richText from './objects/richText';
@@ -24,6 +26,8 @@ export default createSchema({
     author,
     activity,
     spotlight,
+    objective,
+    value,
 
     // object schemas
     normalText,
