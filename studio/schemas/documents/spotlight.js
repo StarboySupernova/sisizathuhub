@@ -28,7 +28,7 @@ export default {
     },
     {
       name: 'activity',
-      title: 'Top Activities',
+      title: 'Core Initiatives',
       type: 'array',
       of: [
         {
