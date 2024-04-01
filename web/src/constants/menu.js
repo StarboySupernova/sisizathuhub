@@ -4,11 +4,15 @@ export const menu = [
     path: '/',
   },
   {
-    title: 'Posts',
+    title: 'Latest',
     path: '/spotlight',
   },
   {
-    title: 'Our Services',
+    title: 'Our Work',
+    path: '/activities'
+  },
+  {
+    title: 'Categories',
     path: '/categories',
   },
   {
