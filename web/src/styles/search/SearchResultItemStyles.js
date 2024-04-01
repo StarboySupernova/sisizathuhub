@@ -9,6 +9,7 @@ export const SearchResultItemStyles = styled(Link)`
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
+  border-radius: 8px; 
   .img {
     width: 50px;
     height: 40px;
