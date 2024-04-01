@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   :root{
-    --primary: #052F11;
+    --primary: #078656;
     --secondary: #12933F;
     --darkBlue: #070747; 
     --darkPurple: #0E0034;
