@@ -38,8 +38,8 @@ function TopCategories() {
     }
   `);
   const activities = data.allSanitySpotlight.nodes[0].activity;
-  const objectives = data.allSanityObjective.nodes[0];
-  const demtValues = data.allSanityValue.nodes[0];
+  const objectives = data.allSanityObjective.nodes;
+  const demtValues = data.allSanityValue.nodes;
   return (
     <TopCategoriesStyles>
       <SectionTitle className="centre__text">Vision</SectionTitle>
