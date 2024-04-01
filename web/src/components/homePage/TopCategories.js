@@ -39,7 +39,7 @@ function TopCategories() {
   `);
   const activities = data.allSanitySpotlight.nodes[0].activity;
   const objectives = data.allSanityObjective.nodes[0];
-  const values = data.allSanityValue.nodes[0];
+  const demtValues = data.allSanityValue.nodes[0];
   return (
     <TopCategoriesStyles>
       <SectionTitle className="centre__text">Vision</SectionTitle>
@@ -53,7 +53,7 @@ function TopCategories() {
         anthropogenic shocks and hazards.
       </ParagraphText>
       <SectionTitle className="centre__text">Our Values</SectionTitle>
-      <ValueGrid values={values} />
+      <ValueGrid demtValues={demtValues} />
       <SectionTitle className="centre__text">Our Objectives</SectionTitle>
       <ObjectiveGrid objectives={objectives} />
       <SectionTitle>Core Initiatives</SectionTitle>
