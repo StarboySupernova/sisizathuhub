@@ -11,25 +11,15 @@ export default {
       title: 'Description',
       type: 'richText',
     },
-    {
-      name: 'slug',
-      title: 'Tag',
-      type: 'slug',
-      options: {
-        source: 'description',
-        maxLength: 96,
-      },
-    },
   ],
   preview: {
     select: {
       title: 'description',
-      slug: 'slug',
     },
-    prepare({ description, slug }) {
+    prepare({ description }) {
       return {
         title: description,
-        subtitle: slug.current,
+        subtitle: 'value',
       };
     },
   },
