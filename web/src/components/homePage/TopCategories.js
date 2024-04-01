@@ -23,17 +23,17 @@ function TopCategories() {
           }
         }
       }
-    }
-    allSanityObjective {
-      nodes {
-        id
-        _rawDescription
+      allSanityObjective {
+        nodes {
+          id
+          _rawDescription
+        }
       }
-    }
-    allSanityValue {
-      nodes {
-        id
-        _rawDescription
+      allSanityValue {
+        nodes {
+          id
+          _rawDescription
+        }
       }
     }
   `);
