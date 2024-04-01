@@ -7,6 +7,11 @@ export default {
   icon: FcComboChart,
   fields: [
     {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    },
+    {
       name: 'description',
       title: 'Description',
       type: 'richText',
@@ -14,12 +19,12 @@ export default {
   ],
   preview: {
     select: {
-      title: 'description',
+      title: 'title',
     },
-    prepare({ description }) {
+    prepare({ title }) {
       return {
-        title: description,
-        subtitle: 'objective',
+        title,
+        subtitle: 'objectives',
       };
     },
   },
