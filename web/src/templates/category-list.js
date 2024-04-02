@@ -36,7 +36,7 @@ function Categories({ data, pageContext }) {
         <div className="container">
           <PageHeader
             title="All Categories"
-            description="Tailored service, designed & implemented with the client in mind"
+            description="Our overarching intervention departments"
           />
           <CategoryGrid categories={categories} />
           {numberOfPages > 1 && (

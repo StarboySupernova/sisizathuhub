@@ -36,10 +36,10 @@ function Footer() {
           ))}
         </ul>
         <ParagraphText className="copyright">
-          4 Spoor Ave, Kempton Park West, Kempton Park, 1619, South Africa
+          P.O. Box 42, Mutoko Rural District, Zimbabwe
         </ParagraphText>
         <ParagraphText className="copyright">
-          © DEMT (PTY) LTD | {new Date().getFullYear()}| All rights reserved
+          © DEMT | EST. 2019 | {new Date().getFullYear()} | All rights reserved
         </ParagraphText>
       </div>
     </FooterStyles>

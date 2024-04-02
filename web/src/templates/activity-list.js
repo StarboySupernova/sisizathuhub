@@ -36,7 +36,7 @@ function Activity({ data, pageContext }) {
         <div className="container">
           <PageHeader
             title="Our Work"
-            description="Elevate your online journey with us. Connect, create, and thrive in a digital world. Your success, our priority."
+            description="DEMT's impactful work aimed at community empowerment and rapid development, all within the ever-important constraint of environmental sustainability & conservation"
           />
           <ActivityGrid activities={activities} />
           {numberOfPages > 1 && (

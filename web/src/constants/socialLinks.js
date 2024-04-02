@@ -13,7 +13,7 @@ import { FcAndroidOs } from 'react-icons/fc';
 export const socialLinks = [
   {
     name: 'telephone',
-    url: 'tel:+27786647721',
+    url: 'tel:+263783344929',
     icon: <FaPhoneSquareAlt />,
   },
   {
@@ -23,29 +23,29 @@ export const socialLinks = [
   },
   {
     name: 'whatsapp',
-    url: `https://wa.me/27786647721?text=${encodeURIComponent(
+    url: `https://wa.me/263783344929?text=${encodeURIComponent(
       'I would like to chat to an available DEMT Representative'
     )}`,
     icon: <FaWhatsappSquare />,
   },
   {
     name: 'facebook',
-    url: 'https://www.facebook.com/DEMT/',
+    url: 'https://www.facebook.com/demt.zw',
     icon: <FaFacebook />,
   },
   {
     name: 'twitter',
-    url: 'https://twitter.com/DEMT',
+    url: 'https://twitter.com/DEMTrust',
     icon: <FaTwitter />,
   },
   {
     name: 'Apple',
-    url: 'https://www.apple.com/DEMT',
+    url: 'https://www.apple.com/DEMT_iOS_App',
     icon: <DiApple />,
   },
   {
     name: 'Android',
-    url: 'https://www.play.google.com/DEMT',
+    url: 'https://www.play.google.com/DEMT_On_Android',
     icon: <FcAndroidOs />,
   },
 ];

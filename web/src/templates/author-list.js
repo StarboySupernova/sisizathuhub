@@ -36,7 +36,7 @@ function AuthorList({ data, pageContext }) {
       <div className="container">
         <PageHeader
           title="About Us"
-          description="Our dedicated, highly trained staff with years of deep, relevant experience whose sole task is to seamlessly bring your project to fruition"
+          description="Our dedicated, highly trained staff with years of deep, relevant experience whose sole task is to foster harmonious co-existence with the environment"
         />
         <AuthorGrid authors={authors} />
         {numberOfPages > 1 && (
