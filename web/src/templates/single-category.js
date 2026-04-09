@@ -55,13 +55,17 @@ function SingleCategory({ data }) {
       <SingleCategoryStyles>
         <div className="container">
           <SEO title={`Diginotive-${category.title}`} />
+          // web/src/templates/single-category.js
           <PageHeader title={category.title} className="pageHeader">
             <MyPortableText value={category._rawDescription} />
-            <GatsbyImage
-              image={category.coverImage.asset.gatsbyImageData}
-              alt={category.coverImage.alt}
-              className="coverImage"
-            />
+            {/* Add the check here */}
+            {category.coverImage && (
+              <GatsbyImage
+                image={category.coverImage.asset.gatsbyImageData}
+                alt={category.coverImage.alt || category.title}
+                className="coverImage"
+              />
+            )}
           </PageHeader>
           <BlogGrid blogs={blogs} />
         </div>

@@ -48,12 +48,15 @@ function SingleBlog({ data }) {
       <SEO title={`Diginotive-${blog.title}`} />
       <PageSpace top={80} bottom={100}>
         <div className="container">
+          // web/src/templates/single-blog.js
           <div className="blog-header">
-            <GatsbyImage
-              image={blog.coverImage.asset.gatsbyImageData}
-              alt={blog.coverImage.alt}
-              className="blog-cover-image"
-            />
+            {blog.coverImage && (
+              <GatsbyImage
+                image={blog.coverImage.asset.gatsbyImageData}
+                alt={blog.coverImage.alt || blog.title}
+                className="blog-cover-image"
+              />
+            )}
             <Title className="title">{blog.title}</Title>
             <ParagraphText className="publishedAt">
               <FiCalendar />

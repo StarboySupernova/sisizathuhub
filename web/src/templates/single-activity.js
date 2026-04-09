@@ -1,11 +1,11 @@
-import { graphql } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import React from 'react';
-import MyPortableText from '../components/MyPortableText';
-import PageHeader from '../components/PageHeader';
-import PageSpace from '../components/PageSpace';
-import SEO from '../components/seo';
-import { SingleCategoryStyles } from '../styles/category/SingleCategoryStyles';
+import { graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import React from "react";
+import MyPortableText from "../components/MyPortableText";
+import PageHeader from "../components/PageHeader";
+import PageSpace from "../components/PageSpace";
+import SEO from "../components/seo";
+import { SingleCategoryStyles } from "../styles/category/SingleCategoryStyles";
 
 export const query = graphql`
   query SingleActivity($id: String!) {
@@ -30,13 +30,17 @@ function SingleActivity({ data }) {
       <SingleCategoryStyles>
         <div className="container">
           <SEO title={`Gala Groove-${activity.title}`} />
+          // web/src/templates/single-activity.js
           <PageHeader title={activity.title} className="pageHeader">
             <MyPortableText value={activity._rawDescription} />
-            <GatsbyImage
-              image={activity.coverImage.asset.gatsbyImageData}
-              alt={activity.coverImage.alt}
-              className="coverImage"
-            />
+            {/* Add the check here */}
+            {activity.coverImage && (
+              <GatsbyImage
+                image={activity.coverImage.asset.gatsbyImageData}
+                alt={activity.coverImage.alt || activity.title}
+                className="coverImage"
+              />
+            )}
           </PageHeader>
         </div>
       </SingleCategoryStyles>
