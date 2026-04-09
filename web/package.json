@@ -7,9 +7,6 @@
   "keywords": [
     "gatsby"
   ],
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "dev": "gatsby develop",
     "start": "gatsby develop",
@@ -46,5 +43,9 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.0"
+  },
+  "overrides": {
+    "msgpackr": "^1.10.2",
+    "lmdb": "^2.8.5"
   }
 }
