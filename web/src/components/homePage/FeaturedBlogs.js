@@ -55,14 +55,13 @@ function FeaturedBlogs() {
       }
     }
   `);
-  // Safely check if the spotlight document and blogs array exist
+  // Safely check if nodes exist
   const spotlightNode = data.allSanitySpotlight.nodes[0];
-  const rawBlogs =
-    spotlightNode && spotlightNode.blogs ? spotlightNode.blogs : [];
+  const rawBlogs = spotlightNode?.blogs || [];
 
   const spotlightBlogs = rawBlogs.map((item) => ({
     ...item,
-    categories: item.categories || [], // Default to empty array for Publications
+    categories: item.categories || [],
   }));
   return (
     <FeaturedBlogsStyles>

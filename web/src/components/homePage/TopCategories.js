@@ -37,9 +37,10 @@ function TopCategories() {
       }
     }
   `);
-  const activities = data.allSanitySpotlight.nodes[0].activity;
-  const objectives = data.allSanityObjective.nodes;
-  const DiginotiveValues = data.allSanityValue.nodes;
+  const spotlightNode = data.allSanitySpotlight.nodes[0];
+  const activities = spotlightNode?.activity || [];
+  const objectives = data.allSanityObjective?.nodes || [];
+  const DiginotiveValues = data.allSanityValue?.nodes || [];
 
   return (
     <TopCategoriesStyles>
