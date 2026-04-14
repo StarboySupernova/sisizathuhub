@@ -30,13 +30,13 @@ function AuthorList({ data, pageContext }) {
   const authors = data.allSanityAuthor.nodes;
   const { currentPage, numberOfPages } = pageContext;
 
-  return (
+ return (
     <PageSpace top={80} bottom={100}>
       <SEO title="About Us & Our Team" />
       <div className="container">
         <PageHeader
           title="About Us"
-          description="Our dedicated, highly trained staff with years of deep, relevant experience whose sole task is to foster harmonious co-existence with the environment"
+          description="Our multidisciplinary team of experts spans research, engineering, finance, operations, and governance. We represent exactly the kind of home-grown innovation institution that drives digital transformation."
         />
         <AuthorGrid authors={authors} />
         {numberOfPages > 1 && (
@@ -53,7 +53,6 @@ function AuthorList({ data, pageContext }) {
 
 export default AuthorList;
 
-/* Address
 
 1954 intakaza & Edmond Shezi str Mayibuye
 Commercia
