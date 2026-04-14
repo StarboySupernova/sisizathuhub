@@ -4,11 +4,12 @@ import {
   FaTwitter,
   FaPhoneSquareAlt,
   FaWhatsappSquare,
-  FaLinkedin,,
+  FaLinkedin,
 } from 'react-icons/fa';
+
 import { IoIosMailUnread } from 'react-icons/io';
 
-export const socialLinks =  [
+export const socialLinks = [
   {
     name: 'telephone',
     url: 'tel:+263776798109',
@@ -22,7 +23,7 @@ export const socialLinks =  [
   {
     name: 'whatsapp',
     url: `https://wa.me/263776798109?text=${encodeURIComponent(
-      "Hello, I would like to inquire about Diginotive's R&D and AI Solutions.",
+      "Hello, I would like to inquire about Diginotive's R&D and AI Solutions."
     )}`,
     icon: <FaWhatsappSquare />,
   },
@@ -40,7 +41,5 @@ export const socialLinks =  [
     name: 'linkedin',
     url: 'https://www.linkedin.com/company/diginotive-solutions',
     icon: <FaLinkedin />,
-  },,
+  },
 ];
-
- 
