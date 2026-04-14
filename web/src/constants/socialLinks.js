@@ -1,51 +1,45 @@
-import React from "react";
+import React from 'react';
 import {
   FaFacebook,
   FaTwitter,
   FaPhoneSquareAlt,
   FaWhatsappSquare,
-} from "react-icons/fa";
-import { DiApple } from "react-icons/di";
-import { IoIosMailUnread } from "react-icons/io";
-import { FcAndroidOs } from "react-icons/fc";
+  FaLinkedin,,
+} from 'react-icons/fa';
+import { IoIosMailUnread } from 'react-icons/io';
 
-// add reddit and other social media links
-export const socialLinks = [
+export const socialLinks =  [
   {
-    name: "telephone",
-    url: "tel:+263783344929",
+    name: 'telephone',
+    url: 'tel:+263776798109',
     icon: <FaPhoneSquareAlt />,
   },
   {
-    name: "mail",
-    url: "mailto:mutambironald682@gmail.com",
+    name: 'mail',
+    url: 'mailto:info@diginotive.co.zw',
     icon: <IoIosMailUnread />,
   },
   {
-    name: "whatsapp",
-    url: `https://wa.me/263783344929?text=${encodeURIComponent(
-      "I would like to chat to an available Diginotive Representative",
+    name: 'whatsapp',
+    url: `https://wa.me/263776798109?text=${encodeURIComponent(
+      "Hello, I would like to inquire about Diginotive's R&D and AI Solutions.",
     )}`,
     icon: <FaWhatsappSquare />,
   },
   {
-    name: "facebook",
-    url: "https://www.facebook.com/Diginotive.zw",
+    name: 'facebook',
+    url: 'https://www.facebook.com/diginotivesolutions',
     icon: <FaFacebook />,
   },
   {
-    name: "twitter",
-    url: "https://twitter.com/Diginotiverust",
+    name: 'twitter',
+    url: 'https://twitter.com/diginotive_zw',
     icon: <FaTwitter />,
   },
   {
-    name: "Apple",
-    url: "https://www.apple.com/Diginotive_iOS_App",
-    icon: <DiApple />,
-  },
-  {
-    name: "Android",
-    url: "https://www.play.google.com/Diginotive_On_Android",
-    icon: <FcAndroidOs />,
-  },
+    name: 'linkedin',
+    url: 'https://www.linkedin.com/company/diginotive-solutions',
+    icon: <FaLinkedin />,
+  },,
 ];
+
