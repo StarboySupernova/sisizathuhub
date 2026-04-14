@@ -55,7 +55,6 @@ function SingleCategory({ data }) {
       <SingleCategoryStyles>
         <div className="container">
           <SEO title={`Diginotive-${category.title}`} />
-          // web/src/templates/single-category.js
           <PageHeader title={category.title} className="pageHeader">
             <MyPortableText value={category._rawDescription} />
             {/* Add the check here */}

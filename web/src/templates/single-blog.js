@@ -48,7 +48,6 @@ function SingleBlog({ data }) {
       <SEO title={`Diginotive-${blog.title}`} />
       <PageSpace top={80} bottom={100}>
         <div className="container">
-          // web/src/templates/single-blog.js
           <div className="blog-header">
             {blog.coverImage && (
               <GatsbyImage
