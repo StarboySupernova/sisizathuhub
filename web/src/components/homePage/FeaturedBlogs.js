@@ -12,65 +12,43 @@ function FeaturedBlogs() {
         nodes {
           blogs {
             ... on SanityBlog {
+              _type
               id
               title
               publishedAt
-              slug {
-                current
-              }
-              categories {
-                title
-                slug {
-                  current
-                }
-              }
-              coverImage {
-                alt
-                asset {
-                  gatsbyImageData
-                }
-              }
-              slug {
-                current
-              }
+              slug { current }
+              categories { title, slug { current } }
+              coverImage { alt, asset { gatsbyImageData } }
             }
             ... on SanityPublication {
+              _type
               id
               title
-              # Publications don't have categories in our schema,
-              # so we provide an empty array to prevent the UI from crashing
               publishedAt: _createdAt
-              slug {
-                current
-              }
-              coverImage {
-                alt
-                asset {
-                  gatsbyImageData
-                }
-              }
+              slug { current }
+              coverImage { alt, asset { gatsbyImageData } }
             }
           }
         }
       }
     }
   `);
-  // Safely check if nodes exist
+
   const spotlightNode = data.allSanitySpotlight.nodes[0];
   const rawBlogs = spotlightNode?.blogs || [];
 
+  // Map the items and determine the URL prefix based on the Sanity Type
   const spotlightBlogs = rawBlogs.map((item) => ({
     ...item,
     categories: item.categories || [],
+    prefix: item._type === "publication" ? "publications" : "spotlight",
   }));
+
   return (
     <FeaturedBlogsStyles>
-      <SectionTitle className="centre__text">
-        Upcoming News, Updates & Events
-      </SectionTitle>
+      <SectionTitle className="centre__text">Upcoming News, Updates & Events</SectionTitle>
       <ParagraphText className="featuredBlogs__text">
-        Stay informed with the latest updates on Diginotive's projects, events,
-        and initiatives in tech development.
+        Stay informed with the latest updates on Diginotive's projects, events, and initiatives.
       </ParagraphText>
       <BlogGrid blogs={spotlightBlogs} />
     </FeaturedBlogsStyles>

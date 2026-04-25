@@ -9,18 +9,16 @@ function BlogGrid({ blogs }) {
         blogs.map((blog) => (
           <BlogItem
             key={blog.id}
-            path={blog.slug?.current}
+            path={blog.slug.current}
             title={blog.title}
             categories={blog.categories}
-            image={
-              blog.coverImage?.asset
-                ? {
-                    imageData: blog.coverImage.asset.gatsbyImageData,
-                    altText: blog.coverImage.alt,
-                  }
-                : null
-            }
+            image={{
+              imageData: blog.coverImage?.asset?.gatsbyImageData,
+              altText: blog.coverImage?.alt,
+            }}
             publishedAt={blog.publishedAt}
+            // Use the prefix from the data, default to spotlight
+            prefix={blog.prefix || "spotlight"} 
           />
         ))}
     </BlogGridStyles>

@@ -6,10 +6,10 @@ import { BlogItemStyles } from '../../styles/blog/BlogItemStyles';
 import ParagraphText from '../typography/ParagraphText';
 import { Title } from '../typography/Title';
 
-function BlogItem({ path, title, image, categories, publishedAt }) {
+function BlogItem({ path, title, image, categories = [], publishedAt, prefix }) {
   return (
     <BlogItemStyles>
-      <Link to={`/spotlight/${path}`}>
+      <Link to={`/${prefix}/${path}`}>
         {image?.imageData && (
           <GatsbyImage
             image={image.imageData}
@@ -18,7 +18,7 @@ function BlogItem({ path, title, image, categories, publishedAt }) {
           />
         )}
       </Link>
-      <Link to={`/spotlight/${path}`}>
+      <Link to={`/${prefix}/${path}`}>
         <Title className="title">{title}</Title>
       </Link>
       {publishedAt && (
@@ -26,11 +26,11 @@ function BlogItem({ path, title, image, categories, publishedAt }) {
           {format(new Date(publishedAt), 'p, MMMM dd, yyyy')}
         </ParagraphText>
       )}
-      {categories && categories.length > 0 && (
+      {categories.length > 0 && (
         <ParagraphText className="categoriesText">
           {categories.map((item, index) => (
-            <span key={item.slug?.current}>
-              <Link to={`/categories/${item.slug?.current}`}>{item.title}</Link>
+            <span key={item.slug.current}>
+              <Link to={`/categories/${item.slug.current}`}>{item.title}</Link>
               {index < categories.length - 1 ? ', ' : ''}
             </span>
           ))}
