@@ -22,5 +22,13 @@ export default {
       description: 'e.g., Policymakers, Primary Students, General Public',
     },
     { name: 'description', title: 'Synopsis', type: 'richText' },
+    {
+      name: 'documentUpload',
+      title: 'Document Upload (PDF, Word, etc.)',
+      type: 'file',
+      options: {
+        storeOriginalFilename: true, 
+      },
+    },
   ],
 };
