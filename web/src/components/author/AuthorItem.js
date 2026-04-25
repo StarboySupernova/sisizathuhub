@@ -5,7 +5,7 @@ import { Title } from "../typography/Title";
 
 function AuthorItem({ name, slug, profileImage }) {
   return (
-    <AuthorItemStyles className="author-item" to={slug.current}>
+    <AuthorItemStyles className="author-item" to={`/team/${slug.current}`}>
       {profileImage && (
         <GatsbyImage
           image={profileImage.asset.gatsbyImageData}
