@@ -52,7 +52,6 @@ const data = useStaticQuery(graphql`
       <BlogGrid blogs={spotlightBlogs} />
     </FeaturedBlogsStyles>
   );
-}
 
 export default FeaturedBlogs;
 
