@@ -1,4 +1,3 @@
-// studio/schemas/documents/publication.js
 import { FcLibrary } from 'react-icons/fc';
 
 export default {
