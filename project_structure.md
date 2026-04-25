@@ -2409,7 +2409,7 @@ export const wrapPageElement = ({ element, props }) => (
         "react-syntax-highlighter": "^15.4.5",
         "react-use-flexsearch": "^0.1.1",
         "styled-components": "^5.3.3"
-      },
+      }, 
       "devDependencies": {
         "dotenv": "^16.0.0"
       }
@@ -2745,7 +2745,7 @@ export const wrapPageElement = ({ element, props }) => (
       "resolved": "https://registry.npmjs.org/@babel/helper-module-imports/-/helper-module-imports-7.22.15.tgz",
       "integrity": "sha512-0pYVBnDKZO2fnSPCrgM/6WMc7eS20Fbok+0r88fp+YtWVLZrp4CkafFGIp+W0VKw4a22sgebPT99y+FDNMdP4w==",
       "dependencies": {
-        "@bab
+        "@ba
 ... (truncated)
 ```
 ## `web\package.json`
@@ -2805,14 +2805,20 @@ export const wrapPageElement = ({ element, props }) => (
 ```
 ## `web\README.md`
 ```
-## z-index:
+# Diginotive Solutions (Pvt) Ltd
 
-- Header: 1000
-- Mobile Menu
-  - Menu: 1002
-  - MenuBg: 1001
-- SearchModal: 2000
+A complete full-stack web-app created with `JAMstack`. ([Gatsby.js](https://www.gatsbyjs.org/) & [Sanity.io](https://sanity.io)).
+Built to showcase Diginotive's R&D capabilities, AI publications, and digital transformation services.
 
+## Project Details
+`Gatsby.js` was used for the frontend and `Sanity.io` for the headless CMS, with `graphql` used to source content.
+
+- [React.js](https://reactjs.org/)
+- [Gatsby.js](https://www.gatsbyjs.org/)
+- [Sanity.io](https://sanity.io/)
+
+## License
+[MIT][mit]
 ```
 ## `web\sanity-config.js`
 ```
@@ -3280,13 +3286,13 @@ export default ConstrainedPortableText;
 ```
 ## `web\src\components\Footer.js`
 ```
-import { Link } from "gatsby";
-import React from "react";
-import { menu } from "../constants/menu";
-import { socialLinks } from "../constants/socialLinks";
-import { FooterStyles } from "../styles/FooterStyles";
-import Logo from "./Logo";
-import ParagraphText from "./typography/ParagraphText";
+import { Link } from 'gatsby';
+import React from 'react';
+import { menu } from '../constants/menu';
+import { socialLinks } from '../constants/socialLinks';
+import { FooterStyles } from '../styles/FooterStyles';
+import Logo from './Logo';
+import ParagraphText from './typography/ParagraphText';
 
 function Footer() {
   return (
@@ -3310,16 +3316,18 @@ function Footer() {
         <ul className="footer__socialList">
           {socialLinks.map((item) => (
             <li key={item.name}>
-              <a href={item.url}>{item.icon}</a>
+              <a href={item.url} target="_blank" rel="noreferrer">
+                {item.icon}
+              </a>
             </li>
           ))}
         </ul>
         <ParagraphText className="copyright">
-          P.O. Box 42, Mutoko Rural District, Zimbabwe
+          15 Garfield Road, Belvedere, Harare, Zimbabwe
         </ParagraphText>
         <ParagraphText className="copyright">
-          © Diginotive | EST. 2019 | {new Date().getFullYear()} | All rights
-          reserved
+          © Diginotive Solutions (Pvt) Ltd | EST. 2025 |{' '}
+          {new Date().getFullYear()} | All rights reserved
         </ParagraphText>
       </div>
     </FooterStyles>
@@ -4276,55 +4284,49 @@ export const menu = [
 ```
 ## `web\src\constants\socialLinks.js`
 ```
-import React from "react";
+import React from 'react';
 import {
   FaFacebook,
   FaTwitter,
   FaPhoneSquareAlt,
   FaWhatsappSquare,
-} from "react-icons/fa";
-import { DiApple } from "react-icons/di";
-import { IoIosMailUnread } from "react-icons/io";
-import { FcAndroidOs } from "react-icons/fc";
+  FaLinkedin,
+} from 'react-icons/fa';
 
-// add reddit and other social media links
+import { IoIosMailUnread } from 'react-icons/io';
+
 export const socialLinks = [
   {
-    name: "telephone",
-    url: "tel:+263783344929",
+    name: 'telephone',
+    url: 'tel:+263776798109',
     icon: <FaPhoneSquareAlt />,
   },
   {
-    name: "mail",
-    url: "mailto:mutambironald682@gmail.com",
+    name: 'mail',
+    url: 'mailto:info@diginotive.co.zw',
     icon: <IoIosMailUnread />,
   },
   {
-    name: "whatsapp",
-    url: `https://wa.me/263783344929?text=${encodeURIComponent(
-      "I would like to chat to an available Diginotive Representative",
+    name: 'whatsapp',
+    url: `https://wa.me/263776798109?text=${encodeURIComponent(
+      "Hello, I would like to inquire about Diginotive's R&D and AI Solutions."
     )}`,
     icon: <FaWhatsappSquare />,
   },
   {
-    name: "facebook",
-    url: "https://www.facebook.com/Diginotive.zw",
+    name: 'facebook',
+    url: 'https://www.facebook.com/diginotivesolutions',
     icon: <FaFacebook />,
   },
   {
-    name: "twitter",
-    url: "https://twitter.com/Diginotiverust",
+    name: 'twitter',
+    url: 'https://twitter.com/diginotive_zw',
     icon: <FaTwitter />,
   },
   {
-    name: "Apple",
-    url: "https://www.apple.com/Diginotive_iOS_App",
-    icon: <DiApple />,
-  },
-  {
-    name: "Android",
-    url: "https://www.play.google.com/Diginotive_On_Android",
-    icon: <FcAndroidOs />,
+    name: 'linkedin',
+    url: 'https://www.linkedin.com/company/diginotive-solutions',
+    icon: <FaLinkedin />,
   },
 ];
 
@@ -4644,11 +4646,14 @@ export const ButtonStyles = styled(Link)`
   outline: none;
   border: none;
   padding: 1rem 2rem;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
   background: ${({ variant }) =>
     variant === buttonTypes.primary
-      ? 'linear-gradient(135deg, var(--primary), var(--primary))'
+      ? 'linear-gradient(135deg, var(--secondary), var(--primary))'
       : variant === buttonTypes.secondary
       ? 'var(--white-1)'
       : 'transparent'};
@@ -4656,12 +4661,20 @@ export const ButtonStyles = styled(Link)`
     variant === buttonTypes.outline ? '2px solid var(--primary)' : 'none'};
   color: ${({ variant }) =>
     variant === buttonTypes.secondary ? 'var(--black-1)' : 'var(--white)'};
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: ${({ variant }) =>
+      variant === buttonTypes.outline 
+      ? '0 0 15px rgba(0, 210, 255, 0.4) inset, 0 0 15px rgba(0, 210, 255, 0.4)' 
+      : '0 8px 20px rgba(0, 123, 255, 0.4)'};
+  }
+
   @media only screen and (max-width: 768px) {
     padding: 0.8rem 1.2rem;
     font-size: 1.4rem;
   }
 `;
-
 ```
 ## `web\src\styles\category\CategoryGridStyles.js`
 ```
@@ -4702,21 +4715,32 @@ export const ValueGridStyles = styled.div`
 import styled from 'styled-components';
 
 export const CategoryItemStyles = styled.div`
-  background: #010215;
-  padding: 2rem;
+  background: var(--black-2);
+  padding: 3rem 2rem;
   border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 210, 255, 0.3);
+  }
+
   .title {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
   .text {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    color: var(--white-1);
   }
   .custom-image {
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
   }
 `;
-
 ```
 ## `web\src\styles\category\SingleCategoryStyles.js`
 ```
@@ -4832,56 +4856,88 @@ export const FooterStyles = styled.footer`
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  *{
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-  :root{
-    --primary: #078656;
-    --secondary: #12933F;
-    --darkBlue: #070747; 
-    --darkPurple: #0E0034;
-    --black-1: #000C02;
-    --black-2: #052A00;
-    --white-1: #C6BED9;
-    --gray: #64718A;
+
+  :root {
+    --primary: #00D2FF;
+    --secondary: #007BFF;
+    --darkBlue: #0A1128;
+    --darkPurple: #1A0B2E;
+    --black-1: #040814;
+    --black-2: #0B1325;
+    --white-1: #E2E8F0;
+    --gray: #8A98B0;
     --grey: var(--gray);
     --white: white;
     --black: black;
   }
-  html{
+
+  html {
     font-size: 10px;
+    scroll-behavior: smooth;
   }
-  
-  body{
+
+  body {
     min-height: 100vh;
     line-height: 1.5;
     width: 100%;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     background: var(--black-1);
     color: var(--white);
   }
-  a{
+
+  a {
     text-decoration: none;
     color: var(--white);
   }
-  .container{
+
+  .container {
     max-width: 1200px;
     margin: 0 auto;
     width: 90%;
   }
-  img, svg{
+
+  img,
+  svg {
     height: 100%;
     width: 100%;
   }
-  li, ul{
+
+  li,
+  ul {
     list-style: none;
+  }
+
+  /* Global Animations */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes glowPulse {
+    0% {
+      box-shadow: 0 0 5px rgba(0, 210, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(0, 210, 255, 0.2);
+    }
   }
 `;
 
 export default GlobalStyles;
-
 ```
 ## `web\src\styles\HeaderStyles.js`
 ```
@@ -5048,13 +5104,15 @@ export const FeaturedBlogsStyles = styled.div`
 import styled from 'styled-components';
 
 export const HeroSectionStyles = styled.div`
-  min-height: 80vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
   .container {
     height: 100%;
+    z-index: 2;
   }
   .hero__wrapper {
     width: 100%;
@@ -5064,40 +5122,50 @@ export const HeroSectionStyles = styled.div`
       position: absolute;
       top: 0;
       left: 0;
-      width: 50%;
+      width: 60%;
       height: 100%;
-      background: linear-gradient(135deg, #052f11, #08011c); 
+      background: linear-gradient(135deg, #0A1128 0%, rgba(10, 17, 40, 0) 100%); 
       z-index: -1;
     }
     .left {
       width: 50%;
-      padding: 50px 0;
+      padding: 100px 0 50px 0;
+      animation: fadeUp 1s ease-out forwards;
       .hero__heading {
-        max-width: 450px;
-        font-size: 3rem;
+        max-width: 550px;
+        font-size: 4rem;
         font-family: 'Poppins', sans-serif;
         font-weight: '700';
-        margin: 0.2rem 0;
+        margin: 0.5rem 0;
+        line-height: 1.2;
+        background: linear-gradient(to right, #ffffff, var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
       .hero__text {
-        max-width: 350px;
+        max-width: 450px;
+        font-size: 1.6rem;
+        margin-top: 1.5rem;
+        color: var(--white-1);
       }
       .hero__button {
-        margin-top: 1.5rem;
-      }
-      .centre__text {
-        text-align: center;
+        margin-top: 2.5rem;
       }
     }
     .right {
       position: absolute;
-      right: 0;
-      top: 0;
-      width: 50%;
-      height: 100%;
+      right: 2%; /* Breathes off the edge */
+      top: 15%; /* Centers it beautifully */
+      width: 45%;
+      height: 70%;
+      z-index: 1;
+      animation: fadeUp 1.2s ease-out forwards;
       .hero__image {
         width: 100%;
         height: 100%;
+        border-radius: 24px; /* Smooth, trendy corners */
+        box-shadow: 0 20px 50px rgba(0, 210, 255, 0.15); /* Soft neon tech glow */
+        border: 1px solid rgba(0, 210, 255, 0.2); /* Premium glass/tech edge */
       }
     }
   }
@@ -5108,7 +5176,7 @@ export const HeroSectionStyles = styled.div`
       align-items: flex-start;
       justify-content: center;
       flex-direction: column-reverse;
-      padding-top: 80px;
+      padding-top: 100px;
       padding-bottom: 80px;
       &::after {
         width: 100%;
@@ -5119,9 +5187,12 @@ export const HeroSectionStyles = styled.div`
         align-items: center;
         justify-content: center;
         width: 100%;
+        margin-bottom: 3rem;
         .hero__image {
           height: 300px;
+          width: 90%; /* Breathes off the edge on mobile */
           margin: 0 auto;
+          border-radius: 20px;
         }
       }
       .left {
@@ -5129,14 +5200,16 @@ export const HeroSectionStyles = styled.div`
         margin-top: 1rem;
         padding: 0;
         .hero__heading {
-          max-width: 330px;
-          font-size: 3rem;
+          max-width: 100%;
+          font-size: 3.2rem;
+        }
+        .hero__text {
+          max-width: 100%;
         }
       }
     }
   }
 `;
-
 ```
 ## `web\src\styles\homePage\TopCategoriesStyles.js`
 ```
@@ -5463,12 +5536,12 @@ function Activity({ data, pageContext }) {
 
   return (
     <>
-      <SEO title="Activities" />
+      <SEO title="Core Services" />
       <PageSpace top={80} bottom={100}>
         <div className="container">
           <PageHeader
-            title="Our Work"
-            description="Diginotive's impactful work aimed at community empowerment and rapid development, all within the ever-important constraint of environmental sustainability & conservation"
+            title="Core Services & R&D"
+            description="Driving innovation, building solutions, and creating impact for Zimbabwe. Our evidence-based intelligence translates national digital strategies from policy into prosperity."
           />
           <ActivityGrid activities={activities} />
           {numberOfPages > 1 && (
@@ -5527,7 +5600,7 @@ function AuthorList({ data, pageContext }) {
       <div className="container">
         <PageHeader
           title="About Us"
-          description="Our dedicated, highly trained staff with years of deep, relevant experience whose sole task is to foster harmonious co-existence with the environment"
+          description="Our multidisciplinary team of experts spans research, engineering, finance, operations, and governance. We represent exactly the kind of home-grown innovation institution that drives digital transformation."
         />
         <AuthorGrid authors={authors} />
         {numberOfPages > 1 && (
@@ -5543,21 +5616,6 @@ function AuthorList({ data, pageContext }) {
 }
 
 export default AuthorList;
-
-/* Address
-
-1954 intakaza & Edmond Shezi str Mayibuye
-Commercia
-Midrand
-1685
-South Africa
-076 150 1409
-
-write google review - https://search.google.com/local/writereview?placeid=ChIJ67iW6-ptlR4RtTWSXggOE0A
-read google reviews - https://search.google.com/local/reviews?placeid=ChIJ67iW6-ptlR4RtTWSXggOE0A
-
-
-*/
 
 ```
 ## `web\src\templates\blog-list.js`
@@ -5724,7 +5782,6 @@ function SingleActivity({ data }) {
       <SingleCategoryStyles>
         <div className="container">
           <SEO title={`Gala Groove-${activity.title}`} />
-          // web/src/templates/single-activity.js
           <PageHeader title={activity.title} className="pageHeader">
             <MyPortableText value={activity._rawDescription} />
             {/* Add the check here */}
@@ -5879,7 +5936,6 @@ function SingleBlog({ data }) {
       <SEO title={`Diginotive-${blog.title}`} />
       <PageSpace top={80} bottom={100}>
         <div className="container">
-          // web/src/templates/single-blog.js
           <div className="blog-header">
             {blog.coverImage && (
               <GatsbyImage
@@ -5985,7 +6041,6 @@ function SingleCategory({ data }) {
       <SingleCategoryStyles>
         <div className="container">
           <SEO title={`Diginotive-${category.title}`} />
-          // web/src/templates/single-category.js
           <PageHeader title={category.title} className="pageHeader">
             <MyPortableText value={category._rawDescription} />
             {/* Add the check here */}
