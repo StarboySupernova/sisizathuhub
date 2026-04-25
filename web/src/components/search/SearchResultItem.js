@@ -11,7 +11,7 @@ function BlogSearchResultItem({ blog }) {
   const { closeSearchModal } = useContext(SearchModalContext);
   return (
     <SearchResultItemStyles
-      to={`/spotlight/${blog.slug?.current}`}
+      to={`/spotlight/${blog.slug?.current}`} 
       onClick={() => closeSearchModal()}
     >
       {/* Safely check if the image and asset exist */}
