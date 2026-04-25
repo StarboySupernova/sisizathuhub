@@ -40,7 +40,7 @@ function CategorySearchResultItem({ category }) {
       onClick={() => closeSearchModal()}
     >
       <Title className="title">{category.title}</Title>
-    </SearchResultItemStyles>
+    </SearchResultItemStyles> 
   );
 }
 
