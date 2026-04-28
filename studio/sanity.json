@@ -1,11 +1,11 @@
 {
   "root": true,
   "api": {
-    "projectId": "lneqhxau",
+    "projectId": "mmhckrk8",
     "dataset": "production"
   },
   "project": {
-    "name": "Diginotive"
+    "name": "SisizathuHub"
   },
   "plugins": [
     "@sanity/base",
