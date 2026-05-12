@@ -14,8 +14,11 @@ const SectionWrapper = styled.div`
 // By setting float: left and shape-outside: circle, the text organically wraps around the 3D globe!
 const SphereFloatContainer = styled.div`
   float: left;
-  width: 450px;
-  height: 450px;
+  /* Use a fluid width that responds to screen size */
+  width: 35%; 
+  min-width: 250px;
+  aspect-ratio: 1 / 1;
+  /* Shape-outside stays relative to the container size */
   shape-outside: circle(48%);
   margin-right: 3rem;
   margin-bottom: 1rem;
@@ -24,13 +27,18 @@ const SphereFloatContainer = styled.div`
   align-items: center;
   justify-content: center;
   
+  /* Reduce size slightly for tablet/smaller screens to keep text legible */
   @media (max-width: 900px) {
-    float: none;
-    margin: 0 auto 3rem auto;
-    shape-outside: none;
-    width: 100%;
-    max-width: 400px;
-    height: 400px;
+    width: 40%;
+    min-width: 200px;
+    margin-right: 2rem;
+  }
+
+  /* On very small phones, we keep the float but shrink the sphere significantly */
+  @media (max-width: 480px) {
+    width: 45%;
+    min-width: 150px;
+    margin-right: 1.5rem;
   }
 `;
 
@@ -41,8 +49,8 @@ const IconWrapper = styled.div`
   justify-content: center;
   
   img {
-    width: 28px;
-    height: 28px;
+    width: clamp(18px, 4vw, 28px);  /* Will automatically shrink between 18px and 28px */
+    height: clamp(18px, 4vw, 28px);
     filter: drop-shadow(0 0 5px rgba(0, 174, 239, 0.6));
     opacity: 0.8;
   }
@@ -140,9 +148,12 @@ export default function TechSphere() {
           const rotatedX = point.x * Math.cos(rotation) - point.z * Math.sin(rotation);
           const rotatedZ = point.x * Math.sin(rotation) + point.z * Math.cos(rotation);
           
-          const perspective = 350 / (350 + rotatedZ * 180); 
-          const screenX = rotatedX * 180 * perspective;
-          const screenY = point.y * 180 * perspective;
+          const radius =
+            window.innerWidth > 900 ? 180 : window.innerWidth > 480 ? 120 : 80;
+
+          const perspective = 350 / (350 + rotatedZ * radius);
+          const screenX = rotatedX * radius * perspective;
+          const screenY = point.y * radius * perspective;
           
           const scale = Math.max(0.1, perspective);
           const opacity = perspective > 1 ? 1 : 0.1 + (perspective * 0.6);
