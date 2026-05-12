@@ -107,7 +107,7 @@
 │   │   │   ├── 📄 hero2.png
 │   │   │   ├── 📄 hero3.jpg
 │   │   │   ├── 📄 hero4.jpg
-│   │   │   └── 📄 sisizathuhub.jpg
+│   │   │   └── 📄 sisizathulogo.png
 │   │   ├── 📑 pages
 │   │   │   ├── 🟨 404.js
 │   │   │   └── 🟨 index.js
@@ -4175,7 +4175,7 @@ function Logo() {
   const height = 50;
   return (
     <LogoStyles to="/">
-      <StaticImage src="../images/sisizathuhub.jpg" width={width} height={height} />
+      <StaticImage src="../images/sisizathulogo.png" width={width} height={height} />
     </LogoStyles>
   );
 }
@@ -4703,7 +4703,7 @@ export default function SectionDivider() {
 import { graphql, useStaticQuery } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import React from 'react';
-import favicon from '../images/sisizathuhub.jpg'; // <-- Import your logo
+import favicon from '../images/sisizathulogo.png'; // <-- Import your logo
 
 const SEO = ({ title, description }) => {
   const { site } = useStaticQuery(graphql`

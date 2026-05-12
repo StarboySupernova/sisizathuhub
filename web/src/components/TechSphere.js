@@ -18,8 +18,11 @@ const SphereFloatContainer = styled.div`
   width: 35%; 
   min-width: 250px;
   aspect-ratio: 1 / 1;
-  /* Shape-outside stays relative to the container size */
-  shape-outside: circle(48%);
+  
+  /* Update these two properties for perfect padding! */
+  shape-outside: circle(50%); 
+  shape-margin: 2rem; /* <-- This pushes the text away from the SVGs */
+  
   margin-right: 3rem;
   margin-bottom: 1rem;
   position: relative;
@@ -180,7 +183,7 @@ export default function TechSphere() {
           In today's hyper-accelerated digital economy, mere survival is an obsolete metric—your enterprise must dominate. The digital frontier is ruthless to the unprepared, yet it serves as a landscape of limitless potential for the strategically equipped. Every operational bottleneck is lost revenue; every security vulnerability is a looming catastrophe. At <strong>Sisizathu Hub</strong>, we do not merely provide IT support; we engineer the technological backbone of your future empire, transforming digital complexity into your ultimate competitive advantage.
         </p>
         <p>
-          Imagine a technological ecosystem so robust and meticulously calibrated that your absolute focus remains solely on scaling your vision. Our military-grade cybersecurity protocols—powered by <span className="highlight">AI-driven threat detection</span> and exhaustive vulnerability assessments—stand as an impenetrable fortress around your most valuable corporate assets. But defensive architecture is merely the baseline of our offering.
+          Imagine a technological ecosystem so robust and meticulously calibrated that your absolute focus remains solely on scaling your vision. Our military-grade cybersecurity protocols—powered by <span className="highlight">battle-tested threat detection</span> and exhaustive vulnerability assessments—stand as an impenetrable fortress around your most valuable corporate assets. But defensive architecture is merely the baseline of our offering.
         </p>
         <p>
           To truly outpace market competition, you require bespoke software solutions that breathe life into your operational workflows, eliminating friction and unlocking exponential workforce productivity. From high-availability, lightning-fast web hosting that ensures your brand's digital presence never sleeps, to enterprise-tier commercial printing that makes your physical footprint as commanding as your virtual one, we are the catalyst for your aggressive evolution.

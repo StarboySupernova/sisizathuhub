@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import bgImage from '../images/background.svg'; 
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -12,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
     --secondary: #007BFF;
     --darkBlue: #0A1128;
     --darkPurple: #1A0B2E;
-    --black-1: #1a1a1a;
+    --black-1: #060910;
     --black-2: #0B1325;
     --white-1: #E2E8F0;
     --gray: #8A98B0;
@@ -26,24 +27,36 @@ const GlobalStyles = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
- body {
+  body {
     min-height: 100vh;
     line-height: 1.5;
     width: 100%;
     font-family: 'Inter', sans-serif;
     color: var(--white);
 
-    /* Premium Tech Mesh Gradient */
+    /* 2. THE MULTI-LAYERED BACKGROUND */
     background-color: #060910;
     background-image: 
+      /* Top Layer: The Tech Grid */
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      /* Second Layer: Cyan/Blue Radial Glows */
       radial-gradient(at 0% 0%, rgba(0, 174, 239, 0.15) 0px, transparent 50%),
       radial-gradient(at 100% 0%, rgba(0, 123, 255, 0.15) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(0, 174, 239, 0.1) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(0, 123, 255, 0.1) 0px, transparent 50%),
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      /* Third Layer: Dark Gradient Overlay to ensure white text remains readable over the bright bottom of your SVG */
+      linear-gradient(to bottom, rgba(6, 9, 16, 0.6), rgba(6, 9, 16, 0.95)),
+      /* Bottom Layer: Your SVG Image */
+      url(${bgImage});
+      
+    background-size: 
+      40px 40px, 40px 40px, /* Sizing for the grid */
+      100% 100%, 100% 100%, /* Sizing for the glows */
+      100% 100%,            /* Sizing for the dark overlay */
+      cover;                /* 'cover' ensures the SVG stretches and compresses perfectly to the screen */
+      
     background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 
   a {
