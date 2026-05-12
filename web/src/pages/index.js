@@ -14,8 +14,6 @@ const IndexPage = () => (
     <HeroSection />
     
     <SectionDivider />
-
-    <SectionDivider />
     
     <div className="container">
       <FeaturedBlogs />
@@ -33,11 +31,11 @@ const IndexPage = () => (
       <ContactSection />
     </div>
 
+    <SectionDivider />
+
     <div className="container">
       <TechSphere />
     </div>
-    
-    <SectionDivider />
   </>
 );
 
