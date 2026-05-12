@@ -37,7 +37,7 @@ function Footer() {
           39 Rivier Street, Bothaville, 9660, Free State, South Africa
         </ParagraphText>
         <ParagraphText className="copyright">
-          © Sisizathuhub (Pvt) Ltd | EST. 2014 |{" "}
+          © Sisizathu Hub (Pvt) Ltd | EST. 2014 |{" "}
           {new Date().getFullYear()} | All rights reserved
         </ParagraphText>
       </div>
