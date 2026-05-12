@@ -18,11 +18,8 @@ const SphereFloatContainer = styled.div`
   width: 35%; 
   min-width: 250px;
   aspect-ratio: 1 / 1;
-  
-  /* Update these two properties for perfect padding! */
-  shape-outside: circle(50%); 
-  shape-margin: 2rem; /* <-- This pushes the text away from the SVGs */
-  
+  /* Shape-outside stays relative to the container size */
+  shape-outside: circle(48%);
   margin-right: 3rem;
   margin-bottom: 1rem;
   position: relative;
