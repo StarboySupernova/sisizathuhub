@@ -1,12 +1,12 @@
 # Project Overview
 
 ## Project Summary
-- Total Files (tracked): 114
+- Total Files (tracked): 115
 
 ### Language Breakdown
-- JavaScript: 100 files (87.7%)
-- JSON: 12 files (10.5%)
-- Markdown: 2 files (1.8%)
+- JavaScript: 101 files (87.8%)
+- JSON: 12 files (10.4%)
+- Markdown: 2 files (1.7%)
 
 ## Project Structure
 
@@ -71,6 +71,7 @@
 │   │   │   │   ├── 🟨 ValueGrid.js
 │   │   │   │   └── 🟨 ValueItem.js
 │   │   │   ├── 📁 homePage
+│   │   │   │   ├── 🟨 ContactSection.js
 │   │   │   │   ├── 🟨 FeaturedBlogs.js
 │   │   │   │   ├── 🟨 HeroSection.js
 │   │   │   │   └── 🟨 TopCategories.js
@@ -100,7 +101,10 @@
 │   │   │   └── 🟨 searchModalContext.js
 │   │   ├── 🖼️ images
 │   │   │   ├── 📄 demt.ico.jpg
-│   │   │   ├── 📄 demtMalnutrition.jpg
+│   │   │   ├── 📄 hero1.jpg
+│   │   │   ├── 📄 hero2.png
+│   │   │   ├── 📄 hero3.jpg
+│   │   │   ├── 📄 hero4.jpg
 │   │   │   └── 📄 sisizathuhub.jpg
 │   │   ├── 📑 pages
 │   │   │   ├── 🟨 404.js
@@ -3390,7 +3394,7 @@ function Footer() {
           39 Rivier Street, Bothaville, 9660, Free State, South Africa
         </ParagraphText>
         <ParagraphText className="copyright">
-          © Sisizathuhub (Pvt) Ltd | EST. 2014 |{" "}
+          © Sisizathu Hub (Pvt) Ltd | EST. 2014 |{" "}
           {new Date().getFullYear()} | All rights reserved
         </ParagraphText>
       </div>
@@ -3513,6 +3517,242 @@ function Header() {
 export default Header;
 
 ```
+## `web\src\components\homePage\ContactSection.js`
+```
+import React, { useState } from "react";
+import styled from "styled-components";
+import { FaCheckCircle, FaChevronDown } from "react-icons/fa";
+import { SectionTitle } from "../typography/Title";
+import ParagraphText from "../typography/ParagraphText";
+
+const ContactSectionStyles = styled.div`
+  padding: 8rem 0;
+  display: flex;
+  justify-content: center;
+
+  .quote-form-container {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(10, 17, 40, 0.4);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(0, 174, 239, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 16px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--white);
+      font-size: 1.5rem;
+      font-family: "Inter", sans-serif;
+      transition: all 0.3s ease;
+      outline: none;
+      &:focus {
+        border-color: var(--primary);
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 0 15px rgba(0, 174, 239, 0.2);
+      }
+    }
+
+    .custom-select-container {
+      position: relative;
+      width: 100%;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .select-trigger {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--white);
+      transition: 0.3s;
+    }
+
+    .select-trigger.active {
+      border-color: var(--primary);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 100%;
+      background: rgba(10, 17, 40, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      z-index: 100;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .dropdown-item {
+      padding: 14px 20px;
+      color: var(--white-1);
+      transition: 0.2s;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      &:hover {
+        background: var(--primary);
+        color: var(--black);
+        font-weight: 600;
+      }
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: var(--white);
+      padding: 18px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.6rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.3s;
+      letter-spacing: 1px;
+      margin-top: 10px;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 174, 239, 0.4);
+      }
+    }
+
+    .success-message {
+      text-align: center;
+      padding: 40px 0;
+      .success-icon { font-size: 6rem; color: #00AEEF; margin-bottom: 20px; }
+      h3 { font-size: 2.5rem; margin-bottom: 10px; color: var(--white); }
+      p { font-size: 1.6rem; color: var(--gray); margin-bottom: 30px; }
+      .reset-btn {
+        background: transparent; color: var(--primary); border: 1px solid var(--primary);
+        padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 1.4rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .quote-form-container {
+      padding: 30px 20px;
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  }
+`;
+
+function ContactSection() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState("Select Required Service...");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const services = [
+    "Cybersecurity / MSSP",
+    "Custom Software Development",
+    "Web Hosting & Cloud",
+    "Commercial Printing",
+    "General IT Consultation",
+  ];
+
+  const encode = (data) => {
+    return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "it-inquiry", ...data })
+    })
+      .then(() => setIsSubmitted(true))
+      .catch(error => alert(error));
+  };
+
+  return (
+    <ContactSectionStyles>
+      <div className="quote-form-container">
+        {isSubmitted ? (
+          <div className="success-message">
+            <FaCheckCircle className="success-icon" />
+            <h3>Inquiry Received</h3>
+            <p>Our technical team will review your requirements and reach out shortly.</p>
+            <button onClick={() => setIsSubmitted(false)} className="reset-btn">Submit another inquiry</button>
+          </div>
+        ) : (
+          <>
+            <SectionTitle style={{marginBottom: "1rem"}}>Request a Technical Consultation</SectionTitle>
+            <ParagraphText style={{marginBottom: "3rem"}}>
+              Share your project details, and our engineers will architect a solution tailored to your enterprise.
+            </ParagraphText>
+            
+            <form name="it-inquiry" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+              <input type="hidden" name="form-name" value="it-inquiry" />
+              
+              <div className="form-grid">
+                <input type="text" name="name" placeholder="Full Name" required />
+                <input type="text" name="company" placeholder="Company Name" required />
+                <input type="email" name="email" placeholder="Corporate Email" required />
+                <input type="tel" name="phone" placeholder="Phone Number" required />
+                
+                <div className="custom-select-container full-width">
+                  <div className={`select-trigger ${isOpen ? 'active' : ''}`} onClick={() => setIsOpen(!isOpen)}>
+                    <span>{selectedService}</span>
+                    <FaChevronDown className="arrow" />
+                  </div>
+                  {isOpen && (
+                    <div className="dropdown-menu">
+                      {services.map((service) => (
+                        <div key={service} className="dropdown-item" onClick={() => { setSelectedService(service); setIsOpen(false); }}>
+                          {service}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <input type="hidden" name="service" value={selectedService} />
+                </div>
+
+                <div className="full-width">
+                  <textarea name="message" placeholder="Project details, technical requirements, or current infrastructure challenges..." rows="5" required></textarea>
+                </div>
+              </div>
+
+              <button type="submit" className="submit-btn full-width">Initialize Consultation</button>
+            </form>
+          </>
+        )}
+      </div>
+    </ContactSectionStyles>
+  );
+}
+
+export default ContactSection;
+```
 ## `web\src\components\homePage\FeaturedBlogs.js`
 ```
 import { graphql, useStaticQuery } from "gatsby";
@@ -3602,7 +3842,7 @@ export default FeaturedBlogs;
 ```
 ## `web\src\components\homePage\HeroSection.js`
 ```
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import { HeroSectionStyles } from "../../styles/homePage/HeroSectionStyles";
@@ -3610,34 +3850,79 @@ import ParagraphText from "../typography/ParagraphText";
 import Button from "../buttons/Button";
 
 function HeroSection() {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  // Auto-rotate the images inside the SVG every 3.5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % 4);
+    }, 3500);
+    return () => clearInterval(timer);
+  },[]);
+
   return (
     <HeroSectionStyles>
       <div className="container">
         <div className="hero__wrapper">
+          
+          {/* LEFT SIDE: Text */}
           <div className="left">
+            <div className="badge">🚀 ENTERPRISE IT SOLUTIONS</div>
             <h1 className="hero__heading">
               Innovative IT Solutions Tailored for SMME Growth
             </h1>
             <ParagraphText className="hero__text">
               Sisizathu Hub is a premier provider of managed security, software
-              development, and digital infrastructure. We empower Small and
-              Medium Enterprises with enterprise-grade technology, from
-              cybersecurity and web hosting to custom software and commercial
-              printing solutions."
+              development, and digital infrastructure. We empower enterprises with 
+              secure, scalable, and future-ready technology.
             </ParagraphText>
             <Button to="/spotlight" tag={Link} className="hero__button">
               Explore Our Latest Work
             </Button>
           </div>
+
+          {/* RIGHT SIDE: 3D GLASSMORPHIC SVG CAROUSEL */}
           <div className="right">
-            <StaticImage
-              className="hero__image"
-              src="../../images/demtMalnutrition.jpg"
-              alt="Sisizathu Hub hero image"
-              placeholder="blurred"
-              objectPosition="50% 30%"
-            />
+            <div className="svg-carousel-container">
+              <svg width="100%" viewBox="0 0 310 432" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Back Drop Shadow */}
+                <path d="M9.29688 0.958984L241.912 60.0358C274.03 68.1926 300.066 101.668 300.066 134.805V371.805C300.066 404.942 274.03 425.193 241.912 417.036L67.4507 372.728C35.3332 364.571 9.29688 331.096 9.29688 297.959V0.958984Z" fill="black" fillOpacity="0.6"/>
+                
+                {/* The Tilted Cyan/Blue Gradient Card */}
+                <path d="M9.29688 0.958984L247.633 29.168C280.541 33.0628 307.217 63.0831 307.217 96.2202V333.22C307.217 366.357 280.541 390.063 247.633 386.168L68.881 365.011C35.9736 361.116 9.29688 331.096 9.29688 297.959V0.958984Z" fill="url(#paint0_linear_sisizathu)"/>
+                
+                {/* Glass Panel Masking the Images */}
+                <foreignObject x="11" y="8" width="288" height="364">
+                  <div className="carousel-mask">
+                    
+                    <div className={`carousel-image ${currentImage === 0 ? 'active' : ''}`}>
+                      <StaticImage src="../../images/hero1.jpg" alt="Cybersecurity" objectFit="fill" imgStyle={{ objectFit: 'cover' }} style={{ width: '100%', height: '100%' }} />
+                    </div>
+                    {/* Add more StaticImages here for slots 1, 2, and 3 pointing to your tech images */}
+                    <div className={`carousel-image ${currentImage === 1 ? 'active' : ''}`}>
+                      <StaticImage src="../../images/hero2.png" alt="Software Engineering" objectFit="fill" imgStyle={{ objectFit: 'cover' }} style={{ width: '100%', height: '100%' }} />
+                    </div>
+                    <div className={`carousel-image ${currentImage === 2 ? 'active' : ''}`}>
+                      <StaticImage src="../../images/hero3.jpg" alt="digital infrastructure" objectFit="fill" imgStyle={{ objectFit: 'cover' }} style={{ width: '100%', height: '100%' }} />
+                    </div>
+                    <div className={`carousel-image ${currentImage === 3 ? 'active' : ''}`}>
+                      <StaticImage src="../../images/hero4.jpg" alt="Web Hosting" objectFit="fill" imgStyle={{ objectFit: 'cover' }} style={{ width: '100%', height: '100%' }} />
+                    </div>
+
+                    <div className="glass-reflection-overlay"></div>
+                  </div>
+                </foreignObject>
+
+                <defs>
+                  <linearGradient id="paint0_linear_sisizathu" x1="9.29688" y1="0.958984" x2="-32.3731" y2="353.027" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#00AEEF"/> {/* Cyan */}
+                    <stop offset="1" stopColor="#007BFF"/> {/* Blue */}
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
           </div>
+
         </div>
       </div>
     </HeroSectionStyles>
@@ -3645,19 +3930,42 @@ function HeroSection() {
 }
 
 export default HeroSection;
-
 ```
 ## `web\src\components\homePage\TopCategories.js`
 ```
 import { graphql, useStaticQuery } from "gatsby";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { TopCategoriesStyles } from "../../styles/homePage/TopCategoriesStyles";
-// import CategoryGrid from '../category/CategoryGrid';
 import ActivityGrid from "../category/ActivityGrid";
 import ParagraphText from "../typography/ParagraphText";
 import { SectionTitle } from "../typography/Title";
 import ValueGrid from "../category/ValueGrid";
 import ObjectiveGrid from "../category/ObjectiveGrid";
+import { FaShieldAlt, FaCode, FaServer, FaSync } from "react-icons/fa"; 
+
+const initialCards =[
+  {
+    id: "security",
+    title: "Uncompromising Security",
+    text: "We deploy AI-driven threat detection and robust endpoint protection to ensure your enterprise data remains impervious to modern cyber threats.",
+    theme: "theme-cyan",
+    icon: <FaShieldAlt />
+  },
+  {
+    id: "software",
+    title: "Bespoke Development",
+    text: "Our software architectures are engineered for scale. From CRM modules to high-performance web apps, we translate your business logic into code.",
+    theme: "theme-dark",
+    icon: <FaCode />
+  },
+  {
+    id: "infrastructure",
+    title: "Scalable Infrastructure",
+    text: "High-availability web hosting packages tailored for SMMEs, providing the 99.9% uptime and bandwidth required for continuous digital operations.",
+    theme: "theme-slate",
+    icon: <FaServer />
+  }
+];
 
 function TopCategories() {
   const data = useStaticQuery(graphql`
@@ -3667,62 +3975,112 @@ function TopCategories() {
           activity {
             id
             title
-            slug {
-              current
-            }
+            slug { current }
             _rawDescription
           }
         }
       }
-      allSanityObjective {
-        nodes {
-          id
-          _rawDescription
-        }
-      }
-      allSanityValue {
-        nodes {
-          id
-          _rawDescription
-        }
-      }
+      allSanityObjective { nodes { id, _rawDescription } }
+      allSanityValue { nodes { id, _rawDescription } }
     }
   `);
+
   const spotlightNode = data.allSanitySpotlight.nodes[0];
-  const activities = spotlightNode?.activity || [];
-  const objectives = data.allSanityObjective?.nodes || [];
+  const activities = spotlightNode?.activity ||[];
+  const objectives = data.allSanityObjective?.nodes ||[];
   const DiginotiveValues = data.allSanityValue?.nodes || [];
+
+  const [stackedCards, setStackedCards] = useState(initialCards);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const autoPlayRef = useRef();
+
+  const shuffle = () => {
+    setStackedCards((prev) => {
+      const newCards = [...prev];
+      const firstCard = newCards.shift();
+      newCards.push(firstCard);
+      return newCards;
+    });
+  };
+
+  useEffect(() => {
+    if (isAutoPlaying) {
+      autoPlayRef.current = setInterval(shuffle, 4000);
+    }
+    return () => clearInterval(autoPlayRef.current);
+  }, [isAutoPlaying]);
+
+  const handleManualClick = (id, e) => {
+    e.stopPropagation();
+    setIsAutoPlaying(false);
+    setStackedCards((prev) => {
+      const index = prev.findIndex((c) => c.id === id);
+      if (index === prev.length - 1) return prev;
+      const newCards = [...prev];
+      const [clickedCard] = newCards.splice(index, 1);
+      newCards.push(clickedCard);
+      return newCards;
+    });
+  };
 
   return (
     <TopCategoriesStyles>
-      <SectionTitle className="centre__text">Vision</SectionTitle>
-      <ParagraphText className="hero__text centre__text">
-        Creating resilient and sustainably developed communities
-      </ParagraphText>
-      <SectionTitle className="centre__text">Mission</SectionTitle>
-      <ParagraphText className="hero__text centre__text">
-        Strengthening the capabilities of grassroots communities to collectively
-        strategize, mitigate, and respond to a spectrum of natural and
-        anthropogenic shocks and hazards.
-      </ParagraphText>
+      
+      <div className="card-stack-wrapper">
+        <div className="card-stack-container">
+          {stackedCards.map((card, index) => {
+            const isTop = index === stackedCards.length - 1;
+            const offset = stackedCards.length - 1 - index;
+            
+            return (
+              <div
+                key={card.id}
+                className={`stacked-card ${card.theme} card-depth-${offset} ${isTop && isAutoPlaying ? 'pulse-hint' : ''}`}
+                onClick={(e) => handleManualClick(card.id, e)}
+                style={{
+                  zIndex: index,
+                  '--card-offset': offset,
+                  opacity: isTop ? 1 : 0.8,
+                }}
+              >
+                <div className="card-header">
+                  <h3>{card.title}</h3>
+                  <div className="card-icon">{card.icon}</div>
+                </div>
+                <div className="card-body">
+                  <p>{card.text}</p>
+                </div>
+                {isTop && (
+                  <div className="interaction-hint">
+                    <FaSync /> <span>{isAutoPlaying ? "Auto-Cycling" : "Interactive Mode"}</span>
+                  </div>
+                )}
+                {!isTop && <div className="card-click-overlay"></div>}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       <SectionTitle className="centre__text">Our Values</SectionTitle>
       <ValueGrid DiginotiveValues={DiginotiveValues} />
+
       <SectionTitle className="centre__text">Our Objectives</SectionTitle>
       <ObjectiveGrid objectives={objectives} />
-      <SectionTitle>Core Initiatives</SectionTitle>
-      <ParagraphText>
-        Catalyzing Community & Grassroot Sustainability: Our Impactful
-        Interventions
-      </ParagraphText>
-      <ActivityGrid activities={activities} />
+
+      <div style={{marginTop: "5rem"}}>
+        <SectionTitle className="centre__text">Core Capabilities</SectionTitle>
+        <ParagraphText className="centre__text" style={{maxWidth: "600px", margin: "0 auto"}}>
+          Catalyzing digital transformation through our impactful core technology pillars.
+        </ParagraphText>
+        <ActivityGrid activities={activities} />
+      </div>
+      
     </TopCategoriesStyles>
   );
 }
 
 export default TopCategories;
-
-// https://0wfqubi4.api.sanity.io/v1/graphql/production/default
-
 ```
 ## `web\src\components\Layout.js`
 ```
@@ -4466,6 +4824,7 @@ import React from "react";
 import FeaturedBlogs from "../components/homePage/FeaturedBlogs";
 import HeroSection from "../components/homePage/HeroSection";
 import TopCategories from "../components/homePage/TopCategories";
+import ContactSection from "../components/homePage/ContactSection"; // <-- Add Import
 import SEO from "../components/seo";
 
 const IndexPage = () => (
@@ -4475,12 +4834,12 @@ const IndexPage = () => (
     <div className="container">
       <FeaturedBlogs />
       <TopCategories />
+      <ContactSection /> {/* <-- Insert Form Here */}
     </div>
   </>
 );
 
 export default IndexPage;
-
 ```
 ## `web\src\styles\author\AuthorGridStyles.js`
 ```
@@ -4569,42 +4928,80 @@ export const BlogGridStyles = styled.div`
 import styled from 'styled-components';
 
 export const BlogItemStyles = styled.div`
-  display: inline-block;
-  border-radius: 12px;
-  .img {
-    height: 250px;
-    margin-bottom: 1.5rem;
-    border-radius: 12px;
-    [data-main-image] {
-      transition: 0.3s ease-in-out transform;
-    }
-  }
-  .title {
-    margin-bottom: 0.5rem;
-  }
-  .publishedAt {
-    margin-bottom: 0.3rem;
-  }
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  
+  /* PREMIUM FROSTED GLASS BASE */
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(0, 174, 239, 0.3); /* Cyan Edge */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  z-index: 1;
+
+  /* HOVER EFFECTS */
   &:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 174, 239, 0.2);
+    border-color: rgba(0, 174, 239, 0.5);
+
     .img [data-main-image] {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
   }
-  .categoriesText {
+
+  .img {
+    height: 220px;
+    margin-bottom: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    [data-main-image] {
+      transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+  }
+
+  .title-link { text-decoration: none; }
+  .title {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .meta-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex-grow: 1;
+  }
+
+  .publishedAt, .categoriesText {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0;
+    
     a {
-      color: var(--gray);
-      &:hover {
-        text-decoration: underline;
-      }
+      color: rgba(255, 255, 255, 0.8);
+      &:hover { color: var(--primary); text-decoration: underline;}
     }
   }
+
   @media only screen and (max-width: 768px) {
-    .title {
-      margin-bottom: 0.5rem;
-    }
+    padding: 1.5rem;
+    .title { font-size: 1.8rem; }
+    .img { height: 180px; }
   }
 `;
-
 ```
 ## `web\src\styles\blog\SingleBlogStyles.js`
 ```
@@ -4781,30 +5178,62 @@ export const ValueGridStyles = styled.div`
 import styled from 'styled-components';
 
 export const CategoryItemStyles = styled.div`
-  background: var(--black-2);
+  /* PREMIUM FROSTED GLASS CARDS */
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: 3rem 2rem;
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border-top: 1px solid rgba(0, 174, 239, 0.3); /* Cyan edge highlight */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   
+  display: flex;
+  flex-direction: column;
+
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-    border-color: rgba(0, 210, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 174, 239, 0.6); /* Glowing cyan border on hover */
   }
 
   .title {
     margin-bottom: 1.5rem;
+    color: var(--white);
   }
-  .text {
+  
+  .text-wrap-container, .text {
     margin-bottom: 2.5rem;
     color: var(--white-1);
+    flex-grow: 1;
   }
-  .custom-image {
-    max-width: 100%;
-    max-height: 250px;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
+
+  .card-image-wrapper, .custom-image {
+    width: 160px !important;
+    height: 160px !important;
+    float: left;
+    margin: 0 2rem 1rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+    shape-outside: inset(0%);
+    border: 1px solid rgba(0, 174, 239, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .button-container {
+    margin-top: auto; 
+    clear: both;
+    align-self: flex-start;
+  }
+
+  @media only screen and (max-width: 768px) {
+    padding: 2.5rem 1.5rem;
+    .card-image-wrapper, .custom-image {
+      width: 130px !important;
+      height: 130px !important;
+      margin: 0 1.5rem 0.5rem 0;
+    }
   }
 `;
 ```
@@ -5167,133 +5596,237 @@ export const FeaturedBlogsStyles = styled.div`
 ```
 ## `web\src\styles\homePage\HeroSectionStyles.js`
 ```
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeroSectionStyles = styled.div`
-  min-height: 85vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  .container {
-    height: 100%;
-    z-index: 2;
-  }
+
   .hero__wrapper {
     width: 100%;
-    height: 100%;
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(135deg, #0A1128 0%, rgba(10, 17, 40, 0) 100%); 
-      z-index: -1;
-    }
-    .left {
-      width: 50%;
-      padding: 100px 0 50px 0;
-      animation: fadeUp 1s ease-out forwards;
-      .hero__heading {
-        max-width: 550px;
-        font-size: 4rem;
-        font-family: 'Poppins', sans-serif;
-        font-weight: '700';
-        margin: 0.5rem 0;
-        line-height: 1.2;
-        background: linear-gradient(to right, #ffffff, var(--primary));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .hero__text {
-        max-width: 450px;
-        font-size: 1.6rem;
-        margin-top: 1.5rem;
-        color: var(--white-1);
-      }
-      .hero__button {
-        margin-top: 2.5rem;
-      }
-    }
-    .right {
-      position: absolute;
-      right: 2%; /* Breathes off the edge */
-      top: 15%; /* Centers it beautifully */
-      width: 45%;
-      height: 70%;
-      z-index: 1;
-      animation: fadeUp 1.2s ease-out forwards;
-      .hero__image {
-        width: 100%;
-        height: 100%;
-        border-radius: 24px; /* Smooth, trendy corners */
-        box-shadow: 0 20px 50px rgba(0, 210, 255, 0.15); /* Soft neon tech glow */
-        border: 1px solid rgba(0, 210, 255, 0.2); /* Premium glass/tech edge */
-      }
-    }
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 120px 0 60px 0;
   }
+
+  .badge {
+    display: inline-block;
+    background: rgba(0, 174, 239, 0.1);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .hero__heading {
+    font-size: 4.5rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #ffffff, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero__text {
+    font-size: 1.6rem;
+    color: var(--white-1);
+    margin-bottom: 30px;
+  }
+
+  /* 3D SVG CAROUSEL STYLES */
+  .right {
+    display: flex;
+    justify-content: center;
+  }
+
+  .svg-carousel-container {
+    width: 100%;
+    max-width: 355px;
+    margin: 35px 0 40px 0;
+    position: relative;
+    animation: floatCard 6s ease-in-out infinite;
+  }
+
+  @keyframes floatCard {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  .carousel-mask {
+    width: 100%;
+    height: 100%;
+    border-radius: 26px;
+    overflow: hidden;
+    position: relative;
+    background: var(--black-1);
+  }
+
+  .carousel-image {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateX(60px) scale(0.8) rotate(-4deg);
+    transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+  }
+
+  .carousel-image.active {
+    opacity: 1;
+    transform: translateX(0px) scale(1) rotate(0deg);
+    z-index: 2;
+  }
+
+  .glass-reflection-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 50%);
+    border: 1.5px solid rgba(0, 174, 239, 0.5); /* Cyan border */
+    border-radius: 26px;
+    pointer-events: none;
+    z-index: 3;
+    box-shadow: inset 0 0 25px rgba(0,0,0,0.6);
+  }
+
   @media only screen and (max-width: 768px) {
     .hero__wrapper {
-      height: 100%;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      flex-direction: column-reverse;
+      grid-template-columns: 1fr; 
       padding-top: 100px;
-      padding-bottom: 80px;
-      &::after {
-        width: 100%;
-      }
-      .right {
-        position: initial;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 3rem;
-        .hero__image {
-          height: 300px;
-          width: 90%; /* Breathes off the edge on mobile */
-          margin: 0 auto;
-          border-radius: 20px;
-        }
-      }
-      .left {
-        width: 100%;
-        margin-top: 1rem;
-        padding: 0;
-        .hero__heading {
-          max-width: 100%;
-          font-size: 3.2rem;
-        }
-        .hero__text {
-          max-width: 100%;
-        }
-      }
+    }
+    .hero__heading {
+      font-size: 3.5rem;
     }
   }
 `;
 ```
 ## `web\src\styles\homePage\TopCategoriesStyles.js`
 ```
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const wiggle = keyframes`
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+`;
 
 export const TopCategoriesStyles = styled.div`
   padding: 5rem 0;
-  .info {
-    max-width: 400px;
+  overflow: hidden;
+
+  .card-stack-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0 10rem 0;
+    perspective: 1000px;
   }
-  .centre__text {
-    text-align: center;
+
+  .card-stack-container {
+    position: relative;
+    width: 100%;
+    max-width: 750px;
+    height: 380px;
   }
-  .right__text {
-    text-align: right;
+
+  .stacked-card {
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    padding: 40px;
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: -15px 20px 50px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    transform: 
+        translate(calc(var(--card-offset) * 60px), calc(var(--card-offset) * 20px)) 
+        rotate(calc(var(--card-offset) * -2deg))
+        scale(calc(1 - var(--card-offset) * 0.05));
+    cursor: pointer;
+  }
+
+  .pulse-hint {
+    animation: ${wiggle} 4s ease-in-out infinite;
+  }
+
+  .interaction-hint {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    svg { width: 12px; height: 12px; animation: spin 4s linear infinite; }
+  }
+
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+
+  /* --- TECH GRADIENTS --- */
+  .theme-cyan {
+    background: linear-gradient(145deg, var(--primary) 0%, var(--secondary) 100%);
+    color: #fff;
+    .card-icon { background: rgba(0,0,0,0.2); color: #fff; }
+    .interaction-hint { color: #fff; }
+  }
+
+  .theme-dark {
+    background: linear-gradient(145deg, #1a1a1c 0%, #050505 100%);
+    border: 1px solid rgba(0, 174, 239, 0.4);
+    color: #fff;
+    .card-icon { background: var(--primary); color: #000; }
+  }
+
+  .theme-slate {
+    background: linear-gradient(145deg, #2e2e35 0%, #1c1c1f 100%);
+    color: #fff;
+    .card-icon { background: rgba(0, 174, 239, 0.2); color: var(--primary); }
+  }
+
+  .card-depth-1 { filter: brightness(0.7) blur(0.5px); }
+  .card-depth-2 { filter: brightness(0.4) blur(1.5px); }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-header h3 { font-size: 2.4rem; font-weight: 800; }
+  .card-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;}
+  .card-body p { font-size: 1.6rem; line-height: 1.6; margin-top: 20px; }
+
+  .centre__text { text-align: center; }
+
+  @media only screen and (max-width: 768px) {
+    .card-stack-wrapper { padding: 2rem 0 10rem 0; }
+    .card-stack-container { height: 480px; max-width: 85%; }
+    .stacked-card {
+      transform: 
+        translateY(calc(var(--card-offset) * 60px)) 
+        translateX(calc(var(--card-offset) * -10px))
+        rotate(calc(var(--card-offset) * 3deg)) 
+        scale(calc(1 - var(--card-offset) * 0.06));
+      padding: 30px;
+    }
+    .card-header h3 { font-size: 1.8rem; }
+    .card-body p { font-size: 1.4rem; }
   }
 `;
-
 ```
 ## `web\src\styles\HomePageStyles.js`
 ```

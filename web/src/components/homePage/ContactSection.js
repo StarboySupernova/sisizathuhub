@@ -66,6 +66,13 @@ const ContactSectionStyles = styled.div`
       border-radius: 8px;
       color: var(--white);
       transition: 0.3s;
+
+      /* Constraint for the dropdown chevron SVG */
+      svg {
+        width: 16px;
+        height: 16px;
+        min-width: 16px;
+      }
     }
 
     .select-trigger.active {

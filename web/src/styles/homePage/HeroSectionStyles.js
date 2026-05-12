@@ -54,8 +54,8 @@ export const HeroSectionStyles = styled.div`
 
   .svg-carousel-container {
     width: 100%;
-    max-width: 355px;
-    margin: 35px 0 40px 0;
+    max-width: 500px; /* Increased from 355px to match previous size */
+    margin: 0 auto;
     position: relative;
     animation: floatCard 6s ease-in-out infinite;
   }
