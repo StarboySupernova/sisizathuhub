@@ -26,19 +26,24 @@ const GlobalStyles = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
-  body {
+ body {
     min-height: 100vh;
     line-height: 1.5;
     width: 100%;
     font-family: 'Inter', sans-serif;
-    
-    background-color: #060910; 
-    background-image: 
-      radial-gradient(circle at 15% 50%, rgba(0, 174, 239, 0.12), transparent 30%), 
-      radial-gradient(circle at 85% 30%, rgba(0, 123, 255, 0.12), transparent 30%);
-    background-attachment: fixed;
-    
     color: var(--white);
+
+    /* Premium Tech Mesh Gradient */
+    background-color: #060910;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(0, 174, 239, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(0, 123, 255, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(0, 174, 239, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(0, 123, 255, 0.1) 0px, transparent 50%),
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    background-attachment: fixed;
   }
 
   a {
