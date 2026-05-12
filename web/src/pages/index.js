@@ -15,11 +15,6 @@ const IndexPage = () => (
     
     <SectionDivider />
 
-    {/* New Sphere Section */}
-    <div className="container">
-      <TechSphere />
-    </div>
-
     <SectionDivider />
     
     <div className="container">
@@ -36,6 +31,10 @@ const IndexPage = () => (
 
     <div className="container">
       <ContactSection />
+    </div>
+
+    <div className="container">
+      <TechSphere />
     </div>
     
     <SectionDivider />

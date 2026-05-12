@@ -145,18 +145,20 @@ export default function TechSphere() {
     <SectionWrapper>
       <SphereFloatContainer>
         {points.current.map((point, i) => {
-          const rotatedX = point.x * Math.cos(rotation) - point.z * Math.sin(rotation);
-          const rotatedZ = point.x * Math.sin(rotation) + point.z * Math.cos(rotation);
-          
+          const rotatedX =
+            point.x * Math.cos(rotation) - point.z * Math.sin(rotation);
+          const rotatedZ =
+            point.x * Math.sin(rotation) + point.z * Math.cos(rotation);
+
           const radius =
             window.innerWidth > 900 ? 180 : window.innerWidth > 480 ? 120 : 80;
 
           const perspective = 350 / (350 + rotatedZ * radius);
           const screenX = rotatedX * radius * perspective;
           const screenY = point.y * radius * perspective;
-          
+
           const scale = Math.max(0.1, perspective);
-          const opacity = perspective > 1 ? 1 : 0.1 + (perspective * 0.6);
+          const opacity = perspective > 1 ? 1 : 0.1 + perspective * 0.6;
           const zIndex = Math.floor(perspective * 100);
 
           return (
@@ -165,7 +167,7 @@ export default function TechSphere() {
               style={{
                 transform: `translate3d(${screenX}px, ${screenY}px, 0) scale(${scale})`,
                 opacity: opacity,
-                zIndex: zIndex
+                zIndex: zIndex,
               }}
             >
               <img src={iconPaths[i].default || iconPaths[i]} alt="tech icon" />
@@ -173,20 +175,40 @@ export default function TechSphere() {
           );
         })}
       </SphereFloatContainer>
-      
+
       <MarketingCopy>
         <h2>Architecting the Digital Dominance of Tomorrow.</h2>
         <p>
-          In today's hyper-accelerated digital economy, mere survival is an obsolete metric—your enterprise must dominate. The digital frontier is ruthless to the unprepared, yet it serves as a landscape of limitless potential for the strategically equipped. Every operational bottleneck is lost revenue; every security vulnerability is a looming catastrophe. At <strong>Sisizathu Hub</strong>, we do not merely provide IT support; we engineer the technological backbone of your future empire, transforming digital complexity into your ultimate competitive advantage.
+          At{" "}
+          <span className="highlight">Sisizathu Hub</span>, we do not merely
+          provide IT support; we engineer the technological backbone of your
+          future empire, transforming digital complexity into your ultimate
+          competitive advantage.
         </p>
         <p>
-          Imagine a technological ecosystem so robust and meticulously calibrated that your absolute focus remains solely on scaling your vision. Our military-grade cybersecurity protocols—powered by <span className="highlight">battle-tested threat detection</span> and exhaustive vulnerability assessments—stand as an impenetrable fortress around your most valuable corporate assets. But defensive architecture is merely the baseline of our offering.
+          We create technological ecosystems with a focus on robustness and meticulous
+          calibration such that your absolute focus remains solely on scaling your
+          vision. Our extensive cybersecurity protocols, powered by battle-tested threat detection and
+          exhaustive vulnerability assessments, stand as an impenetrable fortress
+          around your most valuable corporate assets. But defensive architecture
+          is merely the baseline of our offering.
         </p>
         <p>
-          To truly outpace market competition, you require bespoke software solutions that breathe life into your operational workflows, eliminating friction and unlocking exponential workforce productivity. From high-availability, lightning-fast web hosting that ensures your brand's digital presence never sleeps, to enterprise-tier commercial printing that makes your physical footprint as commanding as your virtual one, we are the catalyst for your aggressive evolution.
+          To help our clients truly outpace market competition, we offer bespoke software
+          solutions that breathe life into operational workflows,
+          eliminating friction and unlocking exponential workforce productivity.
+          From high-availability, lightning-fast web hosting that ensures your
+          brand's digital presence never sleeps, to enterprise-tier commercial
+          printing that makes your physical footprint as commanding as your
+          virtual one, we are the catalyst for your aggressive evolution.
         </p>
         <p>
-          We understand that behind every data point, server node, and line of code lies the living heartbeat of your business. Our multidisciplinary team of elite engineers, cybersecurity veterans, and strategic visionaries partner intimately with you to navigate the unknown with absolute mathematical certainty. Command your market. Secure your legacy. Welcome to the new global standard of enterprise excellence.
+          We understand that behind every data point, server node, and line of
+          code lies the living heartbeat of your business. Our multidisciplinary
+          team of elite engineers, cybersecurity veterans, and strategic
+          visionaries partner intimately with you to navigate the unknown with
+          absolute mathematical certainty. Command your market. Secure your
+          legacy. Welcome to the new global standard of enterprise excellence.
         </p>
       </MarketingCopy>
     </SectionWrapper>
