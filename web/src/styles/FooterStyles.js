@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const FooterStyles = styled.footer`
   padding: 5rem 0 2rem 0;
   text-align: center;
-  background: linear-gradient(135deg, #052A00, #081000);
+  background: linear-gradient(135deg, #0A1128, #060910);
+  border-top: 1px solid rgba(0, 174, 239, 0.2);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
   .footer__text {
     margin: 0 auto;
     margin-top: 1rem;

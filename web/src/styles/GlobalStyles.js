@@ -31,7 +31,11 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
     width: 100%;
     font-family: 'Inter', sans-serif;
-    background: var(--black-1);
+    
+    /* Premium tech gradient background */
+    background: #060910 radial-gradient(circle at 15% 50%, rgba(0, 174, 239, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(0, 123, 255, 0.08), transparent 25%);
+    background-attachment: fixed;
+    
     color: var(--white);
   }
 

@@ -12,7 +12,7 @@ const initialCards =[
   {
     id: "security",
     title: "Uncompromising Security",
-    text: "We deploy AI-driven threat detection and robust endpoint protection to ensure your enterprise data remains impervious to modern cyber threats.",
+    text: "We deploy battle-tested threat detection and robust endpoint protection to ensure your enterprise data remains impervious to modern cyber threats.",
     theme: "theme-cyan",
     icon: <FaShieldAlt />
   },
