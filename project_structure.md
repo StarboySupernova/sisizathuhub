@@ -1,11 +1,11 @@
 # Project Overview
 
 ## Project Summary
-- Total Files (tracked): 115
+- Total Files (tracked): 117
 
 ### Language Breakdown
-- JavaScript: 101 files (87.8%)
-- JSON: 12 files (10.4%)
+- JavaScript: 103 files (88.0%)
+- JSON: 12 files (10.3%)
 - Markdown: 2 files (1.7%)
 
 ## Project Structure
@@ -92,7 +92,9 @@
 │   │   │   ├── 🟨 PageHeader.js
 │   │   │   ├── 🟨 PageSpace.js
 │   │   │   ├── 🟨 Pagination.js
-│   │   │   └── 🟨 seo.js
+│   │   │   ├── 🟨 SectionDivider.js
+│   │   │   ├── 🟨 seo.js
+│   │   │   └── 🟨 TechSphere.js
 │   │   ├── 📁 constants
 │   │   │   ├── 🟨 buttonTypes.js
 │   │   │   ├── 🟨 menu.js
@@ -4672,13 +4674,37 @@ export {
 };
 
 ```
+## `web\src\components\SectionDivider.js`
+```
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+
+const pulseGlow = keyframes`
+  0% { box-shadow: 0 0 5px rgba(0, 174, 239, 0.1), 0 0 10px rgba(0, 174, 239, 0.1); opacity: 0.5; }
+  100% { box-shadow: 0 0 15px rgba(0, 174, 239, 0.5), 0 0 25px rgba(0, 174, 239, 0.3); opacity: 1; }
+`;
+
+const DividerWrapper = styled.div`
+  width: 80%;
+  max-width: 800px;
+  height: 2px;
+  margin: 5rem auto;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+  border-radius: 50%;
+  animation: ${pulseGlow} 2s infinite alternate;
+`;
+
+export default function SectionDivider() {
+  return <DividerWrapper />;
+}
+```
 ## `web\src\components\seo.js`
 ```
 import { graphql, useStaticQuery } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import React from 'react';
+import favicon from '../images/sisizathuhub.jpg'; // <-- Import your logo
 
-// query copied from graphql for this site
 const SEO = ({ title, description }) => {
   const { site } = useStaticQuery(graphql`
     {
@@ -4701,12 +4727,124 @@ const SEO = ({ title, description }) => {
   return (
     <Helmet title={seo.title}>
       <meta name="description" content={seo.description} />
+      {/* Attach favicon to the browser tab */}
+      <link rel="icon" href={favicon} />
     </Helmet>
   );
 };
 
 export default SEO;
+```
+## `web\src\components\TechSphere.js`
+```
+import React, { useEffect, useState, useRef } from 'react';
+import styled from 'styled-components';
+import { 
+  FaShieldAlt, FaCode, FaServer, FaCloud, FaDatabase, 
+  FaMobileAlt, FaLock, FaNetworkWired, FaLaptopCode, FaGlobe, 
+  FaBrain, FaCogs, FaWifi, FaSatelliteDish, FaMicrochip 
+} from 'react-icons/fa';
 
+const SphereContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 3rem 0;
+`;
+
+const IconWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  
+  svg {
+    width: 35px;
+    height: 35px;
+    filter: drop-shadow(0 0 8px rgba(0, 174, 239, 0.8));
+  }
+`;
+
+// Math logic directly from your iOS algorithm!
+const generatePoints = (count) => {
+  const points =[];
+  const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
+  for (let i = 0; i < count; i++) {
+    const yRatio = 1 - (i / Math.max(1, count - 1)) * 2;
+    const radiusAtY = Math.sqrt(1 - yRatio * yRatio);
+    const theta = goldenAngle * i;
+
+    const x = radiusAtY * Math.cos(theta);
+    const z = radiusAtY * Math.sin(theta);
+
+    points.push({ x, y: yRatio, z });
+  }
+  return points;
+};
+
+// You can swap these with your own custom imported SVG images!
+const svgsList =[
+  <FaShieldAlt />, <FaCode />, <FaServer />, <FaCloud />, <FaDatabase />, 
+  <FaMobileAlt />, <FaLock />, <FaNetworkWired />, <FaLaptopCode />, <FaGlobe />,
+  <FaBrain />, <FaCogs />, <FaWifi />, <FaSatelliteDish />, <FaMicrochip />,
+  <FaShieldAlt />, <FaCode />, <FaServer />, <FaCloud />, <FaDatabase />
+];
+
+export default function TechSphere() {
+  const [rotation, setRotation] = useState(0);
+  const requestRef = useRef();
+  
+  // Create 20 points
+  const points = useRef(generatePoints(svgsList.length));
+
+  const animate = time => {
+    setRotation(time * 0.0005); // Controls the speed of the spin
+    requestRef.current = requestAnimationFrame(animate);
+  };
+
+  useEffect(() => {
+    requestRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(requestRef.current);
+  },[]);
+
+  return (
+    <SphereContainer>
+      {points.current.map((point, i) => {
+        // Apply 3D Rotation Matrix
+        const rotatedX = point.x * Math.cos(rotation) - point.z * Math.sin(rotation);
+        const rotatedZ = point.x * Math.sin(rotation) + point.z * Math.cos(rotation);
+        
+        // Apply Perspective Projection
+        const perspective = 300 / (300 + rotatedZ * 140); // 140 is the radius
+        const screenX = rotatedX * 140 * perspective;
+        const screenY = point.y * 140 * perspective;
+        
+        const scale = Math.max(0.1, perspective);
+        const opacity = perspective > 1 ? 1 : 0.2 + (perspective * 0.5);
+        const zIndex = Math.floor(perspective * 100);
+
+        return (
+          <IconWrapper
+            key={i}
+            style={{
+              transform: `translate3d(${screenX}px, ${screenY}px, 0) scale(${scale})`,
+              opacity: opacity,
+              zIndex: zIndex
+            }}
+          >
+            {svgsList[i % svgsList.length]}
+          </IconWrapper>
+        );
+      })}
+    </SphereContainer>
+  );
+}
 ```
 ## `web\src\components\typography\ParagraphText.js`
 ```
@@ -4878,18 +5016,43 @@ import React from "react";
 import FeaturedBlogs from "../components/homePage/FeaturedBlogs";
 import HeroSection from "../components/homePage/HeroSection";
 import TopCategories from "../components/homePage/TopCategories";
-import ContactSection from "../components/homePage/ContactSection"; // <-- Add Import
+import ContactSection from "../components/homePage/ContactSection";
+import TechSphere from "../components/homePage/TechSphere";
+import SectionDivider from "../components/SectionDivider"; // <-- Divider
 import SEO from "../components/seo";
 
 const IndexPage = () => (
   <>
     <SEO title="Sisizathu Hub Solutions" />
+    
     <HeroSection />
+    
+    <SectionDivider />
+
+    {/* New Sphere Section */}
+    <div className="container">
+      <TechSphere />
+    </div>
+
+    <SectionDivider />
+    
     <div className="container">
       <FeaturedBlogs />
-      <TopCategories />
-      <ContactSection /> {/* <-- Insert Form Here */}
     </div>
+    
+    <SectionDivider />
+    
+    <div className="container">
+      <TopCategories />
+    </div>
+    
+    <SectionDivider />
+
+    <div className="container">
+      <ContactSection />
+    </div>
+    
+    <SectionDivider />
   </>
 );
 
@@ -5358,7 +5521,9 @@ import styled from 'styled-components';
 export const FooterStyles = styled.footer`
   padding: 5rem 0 2rem 0;
   text-align: center;
-  background: linear-gradient(135deg, #052A00, #081000);
+  background: linear-gradient(135deg, #0A1128, #060910);
+  border-top: 1px solid rgba(0, 174, 239, 0.2);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
   .footer__text {
     margin: 0 auto;
     margin-top: 1rem;
@@ -5435,7 +5600,11 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
     width: 100%;
     font-family: 'Inter', sans-serif;
-    background: var(--black-1);
+    
+    /* Premium tech gradient background */
+    background: #060910 radial-gradient(circle at 15% 50%, rgba(0, 174, 239, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(0, 123, 255, 0.08), transparent 25%);
+    background-attachment: fixed;
+    
     color: var(--white);
   }
 
