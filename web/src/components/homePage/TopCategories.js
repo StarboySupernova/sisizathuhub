@@ -44,15 +44,18 @@ function TopCategories() {
 
   return (
     <TopCategoriesStyles>
-      <SectionTitle className="centre__text">Vision</SectionTitle>
+      <SectionTitle className="centre__text">Our Vision</SectionTitle>
       <ParagraphText className="hero__text centre__text">
-        Creating resilient and sustainably developed communities
+        To be the premier digital catalyst for SMME growth, bridging the
+        technology gap through secure, scalable, and innovative IT
+        infrastructure.
       </ParagraphText>
-      <SectionTitle className="centre__text">Mission</SectionTitle>
+
+      <SectionTitle className="centre__text">Our Mission</SectionTitle>
       <ParagraphText className="hero__text centre__text">
-        Strengthening the capabilities of grassroots communities to collectively
-        strategize, mitigate, and respond to a spectrum of natural and
-        anthropogenic shocks and hazards.
+        To empower Small and Medium Enterprises by providing enterprise-grade
+        Cybersecurity, bespoke Software Solutions, and robust Web Hosting that
+        protects and accelerates business in the digital age.
       </ParagraphText>
       <SectionTitle className="centre__text">Our Values</SectionTitle>
       <ValueGrid DiginotiveValues={DiginotiveValues} />
