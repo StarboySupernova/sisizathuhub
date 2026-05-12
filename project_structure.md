@@ -101,7 +101,7 @@
 │   │   ├── 🖼️ images
 │   │   │   ├── 📄 demt.ico.jpg
 │   │   │   ├── 📄 demtMalnutrition.jpg
-│   │   │   └── 📄 mwenje.jpg
+│   │   │   └── 📄 sisizathuhub.jpg
 │   │   ├── 📑 pages
 │   │   │   ├── 🟨 404.js
 │   │   │   └── 🟨 index.js
@@ -3761,7 +3761,7 @@ function Logo() {
   const height = 50;
   return (
     <LogoStyles to="/">
-      <StaticImage src="../images/mwenje.jpg" width={width} height={height} />
+      <StaticImage src="../images/sisizathuhub.jpg" width={width} height={height} />
     </LogoStyles>
   );
 }

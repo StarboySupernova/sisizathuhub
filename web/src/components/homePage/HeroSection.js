@@ -52,17 +52,17 @@ function HeroSection() {
                   <div className="carousel-mask">
                     
                     <div className={`carousel-image ${currentImage === 0 ? 'active' : ''}`}>
-                      <StaticImage src="../../images/demtMalnutrition.jpg" alt="Cybersecurity" objectFit="fill" imgStyle={{ objectFit: 'cover' }} style={{ width: '100%', height: '100%' }} />
+                      <StaticImage src="../../images/hero1.jpg" alt="Cybersecurity" objectFit="fill" imgStyle={{ objectFit: 'cover' }} style={{ width: '100%', height: '100%' }} />
                     </div>
                     {/* Add more StaticImages here for slots 1, 2, and 3 pointing to your tech images */}
                     <div className={`carousel-image ${currentImage === 1 ? 'active' : ''}`}>
-                      <div style={{width: '100%', height: '100%', backgroundColor: '#0A1128'}}></div>
+                      <StaticImage src="../../images/hero2.png" alt="Software Engineering" objectFit="fill" imgStyle={{ objectFit: 'cover' }} style={{ width: '100%', height: '100%' }} />
                     </div>
                     <div className={`carousel-image ${currentImage === 2 ? 'active' : ''}`}>
-                      <div style={{width: '100%', height: '100%', backgroundColor: '#007BFF'}}></div>
+                      <StaticImage src="../../images/hero3.jpg" alt="digital infrastructure" objectFit="fill" imgStyle={{ objectFit: 'cover' }} style={{ width: '100%', height: '100%' }} />
                     </div>
                     <div className={`carousel-image ${currentImage === 3 ? 'active' : ''}`}>
-                      <div style={{width: '100%', height: '100%', backgroundColor: '#00AEEF'}}></div>
+                      <StaticImage src="../../images/hero4.jpg" alt="Web Hosting" objectFit="fill" imgStyle={{ objectFit: 'cover' }} style={{ width: '100%', height: '100%' }} />
                     </div>
 
                     <div className="glass-reflection-overlay"></div>
