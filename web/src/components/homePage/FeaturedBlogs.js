@@ -66,11 +66,10 @@ function FeaturedBlogs() {
   return (
     <FeaturedBlogsStyles>
       <SectionTitle className="centre__text">
-        Upcoming News, Updates & Events
+        The Pulse of Digital Evolution
       </SectionTitle>
       <ParagraphText className="featuredBlogs__text">
-        Stay informed with the latest updates on Sisizathu Hub's projects, events,
-        and initiatives.
+        Technology never stands still, and neither should your business. Explore the projects, partnerships, and strategic initiatives that are redefining how Sisizathu Hub scales and secures the enterprises of tomorrow.
       </ParagraphText>
       <BlogGrid blogs={spotlightBlogs} />
     </FeaturedBlogsStyles>
