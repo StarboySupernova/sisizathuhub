@@ -11,10 +11,10 @@
     "build": "sanity build"
   },
   "keywords": [
-    "Diginotive",
-    "cars",
+    "Sisizathu Hub",
+    "software",
     "technology",
-    "mechanic"
+    "website hosting"
   ],
   "dependencies": {
     "@sanity/base": "^2.25.4",

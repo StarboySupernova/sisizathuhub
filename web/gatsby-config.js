@@ -3,9 +3,9 @@ const sanityConfig = require("./sanity-config.js");
 
 module.exports = {
   siteMetadata: {
-    title: `Diginotive`,
-    siteUrl: `https://diginotive.netlify.com`,
-    description: `Diginotive`,
+    title: `Sisizathu Hub`,
+    siteUrl: `https://sisizathuhub.co.za`,
+    description: `Sisizathu Hub - IT Solutions for SMMEs`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

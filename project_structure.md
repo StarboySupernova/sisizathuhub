@@ -1,11 +1,11 @@
 # Project Overview
 
 ## Project Summary
-- Total Files (tracked): 112
+- Total Files (tracked): 114
 
 ### Language Breakdown
-- JavaScript: 98 files (87.5%)
-- JSON: 12 files (10.7%)
+- JavaScript: 100 files (87.7%)
+- JSON: 12 files (10.5%)
 - Markdown: 2 files (1.8%)
 
 ## Project Structure
@@ -147,10 +147,12 @@
 │   │   │   ├── 🟨 author-list.js
 │   │   │   ├── 🟨 blog-list.js
 │   │   │   ├── 🟨 category-list.js
+│   │   │   ├── 🟨 publication-list.js
 │   │   │   ├── 🟨 single-activity.js
 │   │   │   ├── 🟨 single-author.js
 │   │   │   ├── 🟨 single-blog.js
-│   │   │   └── 🟨 single-category.js
+│   │   │   ├── 🟨 single-category.js
+│   │   │   └── 🟨 single-publication.js
 │   │   └── 🛠️ utils
 │   │       └── 🟨 getSanityImageData.js
 │   ├── 📁 static
@@ -943,7 +945,7 @@ import { MdStar } from "react-icons/md";
 
 function SidebarList() {
   return S.list()
-    .title("Diginotive")
+    .title("Sisizathu Hub")
     .items([
       S.listItem()
         .title("Spotlight")
@@ -1385,10 +1387,10 @@ export default SidebarList;
     "build": "sanity build"
   },
   "keywords": [
-    "Diginotive",
-    "cars",
+    "Sisizathu Hub",
+    "software",
     "technology",
-    "mechanic"
+    "website hosting"
   ],
   "dependencies": {
     "@sanity/base": "^2.25.4",
@@ -1416,11 +1418,11 @@ export default SidebarList;
 {
   "root": true,
   "api": {
-    "projectId": "lneqhxau",
+    "projectId": "mmhckrk8",
     "dataset": "production"
   },
   "project": {
-    "name": "Diginotive"
+    "name": "SisizathuHub"
   },
   "plugins": [
     "@sanity/base",
@@ -1673,7 +1675,6 @@ export default {
 ```
 ## `studio\schemas\documents\publication.js`
 ```
-// studio/schemas/documents/publication.js
 import { FcLibrary } from 'react-icons/fc';
 
 export default {
@@ -1698,9 +1699,16 @@ export default {
       description: 'e.g., Policymakers, Primary Students, General Public',
     },
     { name: 'description', title: 'Synopsis', type: 'richText' },
+    {
+      name: 'documentUpload',
+      title: 'Document Upload (PDF, Word, etc.)',
+      type: 'file',
+      options: {
+        storeOriginalFilename: true, 
+      },
+    },
   ],
 };
-
 ```
 ## `studio\schemas\documents\service.js`
 ```
@@ -2025,9 +2033,9 @@ const sanityConfig = require("./sanity-config.js");
 
 module.exports = {
   siteMetadata: {
-    title: `Diginotive`,
-    siteUrl: `https://diginotive.netlify.com`,
-    description: `Diginotive`,
+    title: `Sisizathu Hub`,
+    siteUrl: `https://sisizathuhub.co.za`,
+    description: `Sisizathu Hub - IT Solutions for SMMEs`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -2190,6 +2198,36 @@ module.exports = {
           })),
       },
     },
+    {
+  resolve: `gatsby-plugin-local-search`,
+  options: {
+    name: `publications`,
+    engine: `flexsearch`,
+    engineOptions: { tokenize: "forward" },
+    query: `
+    {
+      allSanityPublication {
+        nodes {
+          id
+          title
+          slug { current }
+          coverImage { alt, asset { gatsbyImageData } }
+        }
+      }
+    } 
+    `,
+    ref: "id",
+    index: ["title"],
+    store: ["id", "title", "slug", "coverImage"],
+    normalizer: ({ data }) =>
+      data.allSanityPublication.nodes.map((node) => ({
+        id: node.id,
+        title: node.title,
+        slug: node.slug,
+        coverImage: node.coverImage,
+      })),
+  },
+},
   ],
 };
 
@@ -2200,6 +2238,8 @@ module.exports = {
 exports.createPages = async ({ graphql, actions }) => {
   const postsPerPage = parseInt(process.env.GATSBY_POST_PER_PAGE) || 3;
   // resolving templates paths
+  const singlePublicationTemplate = require.resolve('./src/templates/single-publication.js');
+  const publicationListTemplate = require.resolve('./src/templates/publication-list.js');
   const singleBlogTemplate = require.resolve('./src/templates/single-blog.js');
   const singleCategoryTemplate = require.resolve(
     './src/templates/single-category.js'
@@ -2255,6 +2295,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allSanityPublication { nodes { id, slug { current } } }
     }
   `);
 
@@ -2263,6 +2304,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const categories = result.data.allSanityCategory.nodes;
   const authors = result.data.allSanityAuthor.nodes;
   const activities = result.data.allSanityActivity.nodes;
+  const publications = result.data.allSanityPublication.nodes;
 
   // creating single blog pages
   blogs.forEach((blog) => {
@@ -2297,6 +2339,15 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/activities/${activity.slug.current}`,
       component: singleActivityTemplate,
       context: { id: activity.id },
+    });
+  });
+
+  // Creating single publication pages
+  publications.forEach((pub) => {
+    actions.createPage({
+      path: `/publications/${pub.slug.current}`,
+      component: singlePublicationTemplate,
+      context: { id: pub.id },
     });
   });
 
@@ -2357,6 +2408,16 @@ exports.createPages = async ({ graphql, actions }) => {
         numberOfPages: totalActivityListPages,
         currentPage: index + 1,
       },
+    });
+  });
+
+  // publication paginated pages
+  const totalPubPages = Math.ceil(publications.length / postsPerPage) || 1;
+  Array.from({ length: totalPubPages }).forEach((_, i) => {
+    actions.createPage({
+      path: i === 0 ? `/publications` : `/publications/${i + 1}`,
+      component: publicationListTemplate,
+      context: { limit: postsPerPage, offset: i * postsPerPage, numberOfPages: totalPubPages, currentPage: i + 1 },
     });
   });
 };
@@ -2805,10 +2866,10 @@ export const wrapPageElement = ({ element, props }) => (
 ```
 ## `web\README.md`
 ```
-# Diginotive Solutions (Pvt) Ltd
+# Sisizathu Hub Solutions (Pvt) Ltd
 
 A complete full-stack web-app created with `JAMstack`. ([Gatsby.js](https://www.gatsbyjs.org/) & [Sanity.io](https://sanity.io)).
-Built to showcase Diginotive's R&D capabilities, AI publications, and digital transformation services.
+Built to showcase Sisizathu Hub's R&D capabilities, AI publications, and digital transformation services.
 
 ## Project Details
 `Gatsby.js` was used for the frontend and `Sanity.io` for the headless CMS, with `graphql` used to source content.
@@ -2861,7 +2922,7 @@ import { Title } from "../typography/Title";
 
 function AuthorItem({ name, slug, profileImage }) {
   return (
-    <AuthorItemStyles className="author-item" to={slug.current}>
+    <AuthorItemStyles className="author-item" to={`/team/${slug.current}`}>
       {profileImage && (
         <GatsbyImage
           image={profileImage.asset.gatsbyImageData}
@@ -2883,7 +2944,7 @@ import React from 'react';
 import { BlogGridStyles } from '../../styles/blog/BlogGridStyles';
 import BlogItem from './BlogItem';
 
-function BlogGrid({ blogs }) {
+function BlogGrid({ blogs, prefix = "spotlight" }) {
   return (
     <BlogGridStyles>
       {blogs &&
@@ -2894,10 +2955,12 @@ function BlogGrid({ blogs }) {
             title={blog.title}
             categories={blog.categories}
             image={{
-              imageData: blog.coverImage.asset.gatsbyImageData,
-              altText: blog.coverImage.alt,
+              imageData: blog.coverImage?.asset?.gatsbyImageData,
+              altText: blog.coverImage?.alt,
             }}
             publishedAt={blog.publishedAt}
+            // Use the item's own prefix if it has one, otherwise fallback to the grid default
+            prefix={blog.prefix || prefix} 
           />
         ))}
     </BlogGridStyles>
@@ -2905,7 +2968,6 @@ function BlogGrid({ blogs }) {
 }
 
 export default BlogGrid;
-
 ```
 ## `web\src\components\blog\BlogItem.js`
 ```
@@ -2917,17 +2979,19 @@ import { BlogItemStyles } from '../../styles/blog/BlogItemStyles';
 import ParagraphText from '../typography/ParagraphText';
 import { Title } from '../typography/Title';
 
-function BlogItem({ path, title, image, categories, publishedAt }) {
+function BlogItem({ path, title, image, categories = [], publishedAt, prefix }) {
   return (
     <BlogItemStyles>
-      <Link to={`/spotlight/${path}`}>
-        <GatsbyImage
-          image={image.imageData}
-          alt={image.altText}
-          className="img"
-        />
+      <Link to={`/${prefix}/${path}`}>
+        {image?.imageData && (
+          <GatsbyImage
+            image={image.imageData}
+            alt={image.altText || title}
+            className="img"
+          />
+        )}
       </Link>
-      <Link to={`/spotlight/${path}`}>
+      <Link to={`/${prefix}/${path}`}>
         <Title className="title">{title}</Title>
       </Link>
       {publishedAt && (
@@ -2935,20 +2999,21 @@ function BlogItem({ path, title, image, categories, publishedAt }) {
           {format(new Date(publishedAt), 'p, MMMM dd, yyyy')}
         </ParagraphText>
       )}
-      <ParagraphText className="categoriesText">
-        {categories.map((item, index) => (
-          <span key={item.slug.current}>
-            <Link to={`/categories/${item.slug.current}`}>{item.title}</Link>
-            {index < categories.length - 1 ? ', ' : ''}
-          </span>
-        ))}
-      </ParagraphText>
+      {categories.length > 0 && (
+        <ParagraphText className="categoriesText">
+          {categories.map((item, index) => (
+            <span key={item.slug.current}>
+              <Link to={`/categories/${item.slug.current}`}>{item.title}</Link>
+              {index < categories.length - 1 ? ', ' : ''}
+            </span>
+          ))}
+        </ParagraphText>
+      )}
     </BlogItemStyles>
   );
 }
 
 export default BlogItem;
-
 ```
 ## `web\src\components\buttons\ActionButton.js`
 ```
@@ -3300,11 +3365,10 @@ function Footer() {
       <div className="container">
         <Logo />
         <ParagraphText className="footer__text">
-          "Diginotive Solutions (Private) Limited is a Zimbabwe-based Research
-          and Development company specialising in ICT, educational technology,
-          and AI content development. We empower businesses and organisations
-          through innovative problem-solving rooted in thorough research and
-          custom technological solutions tailored to the African context."
+          "Sisizathu Hub is a technology powerhouse dedicated to bridging the
+          digital gap for SMMEs. By providing managed cybersecurity, bespoke
+          software solutions, and robust hosting infrastructure, we ensure your
+          business is secure, scalable, and ready for the future"
         </ParagraphText>
         <ul className="footer__menuList">
           {menu.map((item) => (
@@ -3323,10 +3387,10 @@ function Footer() {
           ))}
         </ul>
         <ParagraphText className="copyright">
-          15 Garfield Road, Belvedere, Harare, Zimbabwe
+          39 Rivier Street, Bothaville, 9660, Free State, South Africa
         </ParagraphText>
         <ParagraphText className="copyright">
-          © Diginotive Solutions (Pvt) Ltd | EST. 2025 |{' '}
+          © Sisizathuhub (Pvt) Ltd | EST. 2014 |{" "}
           {new Date().getFullYear()} | All rights reserved
         </ParagraphText>
       </div>
@@ -3465,6 +3529,7 @@ function FeaturedBlogs() {
         nodes {
           blogs {
             ... on SanityBlog {
+              _type
               id
               title
               publishedAt
@@ -3483,15 +3548,11 @@ function FeaturedBlogs() {
                   gatsbyImageData
                 }
               }
-              slug {
-                current
-              }
             }
             ... on SanityPublication {
+              _type
               id
               title
-              # Publications don't have categories in our schema,
-              # so we provide an empty array to prevent the UI from crashing
               publishedAt: _createdAt
               slug {
                 current
@@ -3508,22 +3569,25 @@ function FeaturedBlogs() {
       }
     }
   `);
-  // Safely check if nodes exist
+
   const spotlightNode = data.allSanitySpotlight.nodes[0];
   const rawBlogs = spotlightNode?.blogs || [];
 
+  // Map the items and determine the URL prefix based on the Sanity Type
   const spotlightBlogs = rawBlogs.map((item) => ({
     ...item,
     categories: item.categories || [],
+    prefix: item._type === "publication" ? "publications" : "spotlight",
   }));
+
   return (
     <FeaturedBlogsStyles>
       <SectionTitle className="centre__text">
         Upcoming News, Updates & Events
       </SectionTitle>
       <ParagraphText className="featuredBlogs__text">
-        Stay informed with the latest updates on Diginotive's projects, events,
-        and initiatives in tech development.
+        Stay informed with the latest updates on Sisizathu Hub's projects, events,
+        and initiatives.
       </ParagraphText>
       <BlogGrid blogs={spotlightBlogs} />
     </FeaturedBlogsStyles>
@@ -3552,15 +3616,14 @@ function HeroSection() {
         <div className="hero__wrapper">
           <div className="left">
             <h1 className="hero__heading">
-              Empowering Every Zimbabwean with the Intelligence of Tomorrow
+              Innovative IT Solutions Tailored for SMME Growth
             </h1>
             <ParagraphText className="hero__text">
-              "Diginotive Solutions (Private) Limited is a Zimbabwe-based
-              Research and Development company specialising in ICT, educational
-              technology, and AI content development. We empower businesses and
-              organisations through innovative problem-solving rooted in
-              thorough research and custom technological solutions tailored to
-              the African context."
+              Sisizathu Hub is a premier provider of managed security, software
+              development, and digital infrastructure. We empower Small and
+              Medium Enterprises with enterprise-grade technology, from
+              cybersecurity and web hosting to custom software and commercial
+              printing solutions."
             </ParagraphText>
             <Button to="/spotlight" tag={Link} className="hero__button">
               Explore Our Latest Work
@@ -3570,7 +3633,7 @@ function HeroSection() {
             <StaticImage
               className="hero__image"
               src="../../images/demtMalnutrition.jpg"
-              alt="Diginotive hero image"
+              alt="Sisizathu Hub hero image"
               placeholder="blurred"
               objectPosition="50% 30%"
             />
@@ -3857,7 +3920,7 @@ function SearchField({ value, setValue, onFocus }) {
     <SearchFieldStyles>
       <input
         type="text"
-        placeholder="Diginotive Search"
+        placeholder="Search Sisizathu Hub"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onFocus={onFocus && onFocus}
@@ -4124,14 +4187,17 @@ function BlogSearchResultItem({ blog }) {
   const { closeSearchModal } = useContext(SearchModalContext);
   return (
     <SearchResultItemStyles
-      to={`/spotlight/${blog.slug.current}`}
+      to={`/spotlight/${blog.slug?.current}`} 
       onClick={() => closeSearchModal()}
     >
-      <GatsbyImage
-        image={blog.coverImage.asset.gatsbyImageData}
-        alt={blog.coverImage.alt}
-        className="img"
-      />
+      {/* Safely check if the image and asset exist */}
+      {blog.coverImage?.asset && (
+        <GatsbyImage
+          image={blog.coverImage.asset.gatsbyImageData}
+          alt={blog.coverImage.alt || blog.title}
+          className="img"
+        />
+      )}
       <div>
         <Title className="title">{blog.title}</Title>
         <ParagraphText className="categoriesText">
@@ -4150,7 +4216,7 @@ function CategorySearchResultItem({ category }) {
       onClick={() => closeSearchModal()}
     >
       <Title className="title">{category.title}</Title>
-    </SearchResultItemStyles>
+    </SearchResultItemStyles> 
   );
 }
 
@@ -4278,7 +4344,7 @@ export const menu = [
   { title: 'Home', path: '/' },
   { title: 'Insights & News', path: '/spotlight' },
   { title: 'Core Services', path: '/activities' },
-  { title: 'Publications', path: '/categories' },
+  { title: 'Publications', path: '/publications' },
   { title: 'About Us', path: '/team' },
 ];
 ```
@@ -4298,34 +4364,34 @@ import { IoIosMailUnread } from 'react-icons/io';
 export const socialLinks = [
   {
     name: 'telephone',
-    url: 'tel:+263776798109',
+    url: 'tel:+27565151490',
     icon: <FaPhoneSquareAlt />,
   },
   {
     name: 'mail',
-    url: 'mailto:info@diginotive.co.zw',
+    url: 'mailto:info@sisizathuhub.co.za',
     icon: <IoIosMailUnread />,
   },
   {
     name: 'whatsapp',
-    url: `https://wa.me/263776798109?text=${encodeURIComponent(
-      "Hello, I would like to inquire about Diginotive's R&D and AI Solutions."
+    url: `https://wa.me/27565151490?text=${encodeURIComponent(
+      "Hello, I would like to inquire about Sisizathu Hub's IT and Cybersecurity Solutions."
     )}`,
     icon: <FaWhatsappSquare />,
   },
   {
     name: 'facebook',
-    url: 'https://www.facebook.com/diginotivesolutions',
+    url: 'https://www.facebook.com/sisizathuhub',
     icon: <FaFacebook />,
   },
   {
     name: 'twitter',
-    url: 'https://twitter.com/diginotive_zw',
+    url: 'https://twitter.com/sisizathuhub',
     icon: <FaTwitter />,
   },
   {
     name: 'linkedin',
-    url: 'https://www.linkedin.com/company/diginotive-solutions',
+    url: 'https://www.linkedin.com/company/sisizathuhub',
     icon: <FaLinkedin />,
   },
 ];
@@ -4404,7 +4470,7 @@ import SEO from "../components/seo";
 
 const IndexPage = () => (
   <>
-    <SEO title="Diginotive Solutions" />
+    <SEO title="Sisizathu Hub Solutions" />
     <HeroSection />
     <div className="container">
       <FeaturedBlogs />
@@ -4863,11 +4929,11 @@ const GlobalStyles = createGlobalStyle`
   }
 
   :root {
-    --primary: #00D2FF;
+    --primary: #00AEEF;
     --secondary: #007BFF;
     --darkBlue: #0A1128;
     --darkPurple: #1A0B2E;
-    --black-1: #040814;
+    --black-1: #1a1a1a;
     --black-2: #0B1325;
     --white-1: #E2E8F0;
     --gray: #8A98B0;
@@ -5748,6 +5814,53 @@ function Categories({ data, pageContext }) {
 export default Categories;
 
 ```
+## `web\src\templates\publication-list.js`
+```
+import { graphql } from 'gatsby';
+import React from 'react';
+import PageHeader from '../components/PageHeader';
+import SEO from '../components/seo';
+import PageSpace from '../components/PageSpace';
+import BlogGrid from '../components/blog/BlogGrid';
+import Pagination from '../components/Pagination';
+
+export const query = graphql`
+  query publicationListQuery($limit: Int!, $offset: Int!) {
+    allSanityPublication(sort: { fields: _createdAt, order: DESC }, limit: $limit, skip: $offset) {
+      nodes {
+        id
+        title
+        _createdAt
+        slug { current }
+        coverImage { alt, asset { gatsbyImageData } }
+      }
+    }
+  }
+`;
+
+function Publications({ data, pageContext }) {
+  const { currentPage, numberOfPages } = pageContext;
+  const publications = data.allSanityPublication.nodes.map(pub => ({
+    ...pub,
+    publishedAt: pub._createdAt,
+    categories: []
+  }));
+
+  return (
+    <PageSpace top={80} bottom={100}>
+      <SEO title="Publications & Books" />
+      <div className="container">
+        <PageHeader title="Publications & Books" description="Explore Sisizathu Hub's research and literature." />
+        <BlogGrid blogs={publications} prefix="publications" />
+        {numberOfPages > 1 && (
+          <Pagination currentPage={currentPage} numberOfPages={numberOfPages} baseURL="/publications" />
+        )}
+      </div>
+    </PageSpace>
+  );
+}
+export default Publications;
+```
 ## `web\src\templates\single-activity.js`
 ```
 import { graphql } from "gatsby";
@@ -5764,6 +5877,7 @@ export const query = graphql`
     sanityActivity(id: { eq: $id }) {
       title
       _rawDescription
+      _rawBody 
       coverImage {
         asset {
           gatsbyImageData
@@ -5781,10 +5895,12 @@ function SingleActivity({ data }) {
     <PageSpace top={80} bottom={100}>
       <SingleCategoryStyles>
         <div className="container">
-          <SEO title={`Gala Groove-${activity.title}`} />
+          <SEO title={`Sisizathu Hub - ${activity.title}`} /> 
+          
           <PageHeader title={activity.title} className="pageHeader">
+            {/* This displays the Short Description in the header area */}
             <MyPortableText value={activity._rawDescription} />
-            {/* Add the check here */}
+            
             {activity.coverImage && (
               <GatsbyImage
                 image={activity.coverImage.asset.gatsbyImageData}
@@ -5793,6 +5909,12 @@ function SingleActivity({ data }) {
               />
             )}
           </PageHeader>
+
+          {/* 2. to display the Full Service Details (Body) */}
+          <hr style={{ margin: '2rem 0', opacity: '0.1' }} />
+          <div className="body-content">
+             <MyPortableText value={activity._rawBody} />
+          </div>
         </div>
       </SingleCategoryStyles>
     </PageSpace>
@@ -5800,7 +5922,6 @@ function SingleActivity({ data }) {
 }
 
 export default SingleActivity;
-
 ```
 ## `web\src\templates\single-author.js`
 ```
@@ -5933,7 +6054,7 @@ function SingleBlog({ data }) {
   const blog = data.sanityBlog;
   return (
     <SingleBlogStyles>
-      <SEO title={`Diginotive-${blog.title}`} />
+      <SEO title={`Sisizathu Hub-${blog.title}`} />
       <PageSpace top={80} bottom={100}>
         <div className="container">
           <div className="blog-header">
@@ -5964,7 +6085,7 @@ function SingleBlog({ data }) {
             </ParagraphText>
             <ParagraphText className="author">
               <FiUser />
-              <Link to={`/authors/${blog.author.slug.current}`}>
+              <Link to={`/team/${blog.author.slug.current}`}>
                 {blog.author.name}
               </Link>
             </ParagraphText>
@@ -6040,7 +6161,7 @@ function SingleCategory({ data }) {
     <PageSpace top={80} bottom={100}>
       <SingleCategoryStyles>
         <div className="container">
-          <SEO title={`Diginotive-${category.title}`} />
+          <SEO title={`Sisizathu Hub-${category.title}`} />
           <PageHeader title={category.title} className="pageHeader">
             <MyPortableText value={category._rawDescription} />
             {/* Add the check here */}
@@ -6061,6 +6182,87 @@ function SingleCategory({ data }) {
 
 export default SingleCategory;
 
+```
+## `web\src\templates\single-publication.js`
+```
+import { graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import React from "react";
+import MyPortableText from "../components/MyPortableText";
+import PageHeader from "../components/PageHeader";
+import PageSpace from "../components/PageSpace";
+import SEO from "../components/seo";
+import { SingleCategoryStyles } from "../styles/category/SingleCategoryStyles";
+import Button from "../components/buttons/Button"; 
+
+export const query = graphql`
+  query SinglePublication($id: String!) {
+    sanityPublication(id: { eq: $id }) {
+      title
+      _rawDescription
+      targetAudience
+      coverImage {
+        asset { gatsbyImageData }
+        alt
+      }
+      documentUpload {
+        asset {
+          url
+          originalFilename
+        }
+      }
+    }
+  }
+`;
+
+function SinglePublication({ data }) {
+  const publication = data.sanityPublication;
+
+  return (
+    <PageSpace top={80} bottom={100}>
+      <SingleCategoryStyles>
+        <div className="container">
+          <SEO title={`Sisizathu Hub - ${publication.title}`} />
+          <PageHeader title={publication.title} className="pageHeader">
+            
+            {publication.targetAudience && (
+              <p style={{ color: "var(--primary)", marginBottom: "1.5rem", fontSize: "1.6rem" }}>
+                <strong>Target Audience:</strong> {publication.targetAudience}
+              </p>
+            )}
+            
+            <MyPortableText value={publication._rawDescription} />
+            
+            {/*DOWNLOAD BUTTON */}
+            {publication.documentUpload && (
+              <div style={{ marginTop: "2rem" }}>
+                <Button 
+                  tag="a" 
+                  href={publication.documentUpload.asset.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  Download / View Document
+                </Button>
+              </div>
+            )}
+
+            {publication.coverImage && (
+              <GatsbyImage
+                image={publication.coverImage.asset.gatsbyImageData}
+                alt={publication.coverImage.alt || publication.title}
+                className="coverImage"
+              />
+            )}
+
+          </PageHeader>
+        </div>
+      </SingleCategoryStyles>
+    </PageSpace>
+  );
+}
+
+export default SinglePublication;
 ```
 ## `web\src\utils\getSanityImageData.js`
 ```

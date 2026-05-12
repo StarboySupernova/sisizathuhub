@@ -32,7 +32,7 @@ function Publications({ data, pageContext }) {
     <PageSpace top={80} bottom={100}>
       <SEO title="Publications & Books" />
       <div className="container">
-        <PageHeader title="Publications & Books" description="Explore Diginotive's research and literature." />
+        <PageHeader title="Publications & Books" description="Explore Sisizathu Hub's research and literature." />
         <BlogGrid blogs={publications} prefix="publications" />
         {numberOfPages > 1 && (
           <Pagination currentPage={currentPage} numberOfPages={numberOfPages} baseURL="/publications" />

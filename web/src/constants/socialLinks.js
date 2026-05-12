@@ -12,34 +12,34 @@ import { IoIosMailUnread } from 'react-icons/io';
 export const socialLinks = [
   {
     name: 'telephone',
-    url: 'tel:+263776798109',
+    url: 'tel:+27565151490',
     icon: <FaPhoneSquareAlt />,
   },
   {
     name: 'mail',
-    url: 'mailto:info@diginotive.co.zw',
+    url: 'mailto:info@sisizathuhub.co.za',
     icon: <IoIosMailUnread />,
   },
   {
     name: 'whatsapp',
-    url: `https://wa.me/263776798109?text=${encodeURIComponent(
-      "Hello, I would like to inquire about Diginotive's R&D and AI Solutions."
+    url: `https://wa.me/27565151490?text=${encodeURIComponent(
+      "Hello, I would like to inquire about Sisizathu Hub's IT and Cybersecurity Solutions."
     )}`,
     icon: <FaWhatsappSquare />,
   },
   {
     name: 'facebook',
-    url: 'https://www.facebook.com/diginotivesolutions',
+    url: 'https://www.facebook.com/sisizathuhub',
     icon: <FaFacebook />,
   },
   {
     name: 'twitter',
-    url: 'https://twitter.com/diginotive_zw',
+    url: 'https://twitter.com/sisizathuhub',
     icon: <FaTwitter />,
   },
   {
     name: 'linkedin',
-    url: 'https://www.linkedin.com/company/diginotive-solutions',
+    url: 'https://www.linkedin.com/company/sisizathuhub',
     icon: <FaLinkedin />,
   },
 ];

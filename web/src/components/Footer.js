@@ -12,11 +12,10 @@ function Footer() {
       <div className="container">
         <Logo />
         <ParagraphText className="footer__text">
-          "Diginotive Solutions (Private) Limited is a Zimbabwe-based Research
-          and Development company specialising in ICT, educational technology,
-          and AI content development. We empower businesses and organisations
-          through innovative problem-solving rooted in thorough research and
-          custom technological solutions tailored to the African context."
+          "Sisizathu Hub is a technology powerhouse dedicated to bridging the
+          digital gap for SMMEs. By providing managed cybersecurity, bespoke
+          software solutions, and robust hosting infrastructure, we ensure your
+          business is secure, scalable, and ready for the future"
         </ParagraphText>
         <ul className="footer__menuList">
           {menu.map((item) => (
@@ -35,10 +34,10 @@ function Footer() {
           ))}
         </ul>
         <ParagraphText className="copyright">
-          15 Garfield Road, Belvedere, Harare, Zimbabwe
+          39 Rivier Street, Bothaville, 9660, Free State, South Africa
         </ParagraphText>
         <ParagraphText className="copyright">
-          © Diginotive Solutions (Pvt) Ltd | EST. 2025 |{' '}
+          © Sisizathuhub (Pvt) Ltd | EST. 2014 |{" "}
           {new Date().getFullYear()} | All rights reserved
         </ParagraphText>
       </div>

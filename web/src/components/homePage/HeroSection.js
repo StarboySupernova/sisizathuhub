@@ -12,15 +12,14 @@ function HeroSection() {
         <div className="hero__wrapper">
           <div className="left">
             <h1 className="hero__heading">
-              Empowering Every Zimbabwean with the Intelligence of Tomorrow
+              Innovative IT Solutions Tailored for SMME Growth
             </h1>
             <ParagraphText className="hero__text">
-              "Diginotive Solutions (Private) Limited is a Zimbabwe-based
-              Research and Development company specialising in ICT, educational
-              technology, and AI content development. We empower businesses and
-              organisations through innovative problem-solving rooted in
-              thorough research and custom technological solutions tailored to
-              the African context."
+              Sisizathu Hub is a premier provider of managed security, software
+              development, and digital infrastructure. We empower Small and
+              Medium Enterprises with enterprise-grade technology, from
+              cybersecurity and web hosting to custom software and commercial
+              printing solutions."
             </ParagraphText>
             <Button to="/spotlight" tag={Link} className="hero__button">
               Explore Our Latest Work
@@ -30,7 +29,7 @@ function HeroSection() {
             <StaticImage
               className="hero__image"
               src="../../images/demtMalnutrition.jpg"
-              alt="Diginotive hero image"
+              alt="Sisizathu Hub hero image"
               placeholder="blurred"
               objectPosition="50% 30%"
             />

@@ -69,7 +69,7 @@ function FeaturedBlogs() {
         Upcoming News, Updates & Events
       </SectionTitle>
       <ParagraphText className="featuredBlogs__text">
-        Stay informed with the latest updates on Diginotive's projects, events,
+        Stay informed with the latest updates on Sisizathu Hub's projects, events,
         and initiatives.
       </ParagraphText>
       <BlogGrid blogs={spotlightBlogs} />
