@@ -1,15 +1,37 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 
-const SphereContainer = styled.div`
+// This wrapper uses a clearfix to ensure the floated elements don't collapse
+const SectionWrapper = styled.div`
+  margin: 2rem 0;
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+`;
+
+// By setting float: left and shape-outside: circle, the text organically wraps around the 3D globe!
+const SphereFloatContainer = styled.div`
+  float: left;
+  width: 450px;
+  height: 450px;
+  shape-outside: circle(48%);
+  margin-right: 3rem;
+  margin-bottom: 1rem;
   position: relative;
-  width: 100%;
-  height: 450px; /* Increased height for 60 icons */
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  margin: 4rem 0;
+  
+  @media (max-width: 900px) {
+    float: none;
+    margin: 0 auto 3rem auto;
+    shape-outside: none;
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -19,16 +41,53 @@ const IconWrapper = styled.div`
   justify-content: center;
   
   img {
-    width: 28px; /* Optimized size for 60 items */
+    width: 28px;
     height: 28px;
     filter: drop-shadow(0 0 5px rgba(0, 174, 239, 0.6));
     opacity: 0.8;
   }
 `;
 
+const MarketingCopy = styled.div`
+  font-size: 1.65rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: justify;
+
+  h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(to right, #ffffff, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  p {
+    margin-bottom: 1.8rem;
+  }
+
+  strong {
+    color: var(--white);
+    font-weight: 700;
+  }
+  
+  .highlight {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    text-align: left;
+  }
+`;
+
 // Math logic for sphere distribution
 const generatePoints = (count) => {
-  const points = [];
+  const points =[];
   const goldenAngle = Math.PI * (3 - Math.sqrt(5));
   for (let i = 0; i < count; i++) {
     const yRatio = 1 - (i / Math.max(1, count - 1)) * 2;
@@ -46,10 +105,9 @@ export default function TechSphere() {
   const [iconPaths, setIconPaths] = useState([]);
   const requestRef = useRef();
 
-  // 1. AUTOMATICALLY LOAD ALL 60 SVGS
+  // Load all SVGs from your local folder
   useEffect(() => {
     try {
-      // This line grabs all .svg files from your images/svgs folder
       const context = require.context('../images/svgs', false, /\.svg$/);
       const paths = context.keys().map(context);
       setIconPaths(paths);
@@ -64,45 +122,62 @@ export default function TechSphere() {
   }
 
   const animate = time => {
-    setRotation(time * 0.0002); // Slow, premium rotation
+    setRotation(time * 0.0002); // Elegant, slow rotation
     requestRef.current = requestAnimationFrame(animate);
   };
 
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
-  }, []);
+  },[]);
 
   if (iconPaths.length === 0) return null;
 
   return (
-    <SphereContainer>
-      {points.current.map((point, i) => {
-        const rotatedX = point.x * Math.cos(rotation) - point.z * Math.sin(rotation);
-        const rotatedZ = point.x * Math.sin(rotation) + point.z * Math.cos(rotation);
-        
-        // 180 is the radius of the sphere
-        const perspective = 350 / (350 + rotatedZ * 180); 
-        const screenX = rotatedX * 180 * perspective;
-        const screenY = point.y * 180 * perspective;
-        
-        const scale = Math.max(0.1, perspective);
-        const opacity = perspective > 1 ? 1 : 0.1 + (perspective * 0.6);
-        const zIndex = Math.floor(perspective * 100);
+    <SectionWrapper>
+      <SphereFloatContainer>
+        {points.current.map((point, i) => {
+          const rotatedX = point.x * Math.cos(rotation) - point.z * Math.sin(rotation);
+          const rotatedZ = point.x * Math.sin(rotation) + point.z * Math.cos(rotation);
+          
+          const perspective = 350 / (350 + rotatedZ * 180); 
+          const screenX = rotatedX * 180 * perspective;
+          const screenY = point.y * 180 * perspective;
+          
+          const scale = Math.max(0.1, perspective);
+          const opacity = perspective > 1 ? 1 : 0.1 + (perspective * 0.6);
+          const zIndex = Math.floor(perspective * 100);
 
-        return (
-          <IconWrapper
-            key={i}
-            style={{
-              transform: `translate3d(${screenX}px, ${screenY}px, 0) scale(${scale})`,
-              opacity: opacity,
-              zIndex: zIndex
-            }}
-          >
-            <img src={iconPaths[i].default || iconPaths[i]} alt="tech icon" />
-          </IconWrapper>
-        );
-      })}
-    </SphereContainer>
+          return (
+            <IconWrapper
+              key={i}
+              style={{
+                transform: `translate3d(${screenX}px, ${screenY}px, 0) scale(${scale})`,
+                opacity: opacity,
+                zIndex: zIndex
+              }}
+            >
+              <img src={iconPaths[i].default || iconPaths[i]} alt="tech icon" />
+            </IconWrapper>
+          );
+        })}
+      </SphereFloatContainer>
+      
+      <MarketingCopy>
+        <h2>Architecting the Digital Dominance of Tomorrow.</h2>
+        <p>
+          In today's hyper-accelerated digital economy, mere survival is an obsolete metric—your enterprise must dominate. The digital frontier is ruthless to the unprepared, yet it serves as a landscape of limitless potential for the strategically equipped. Every operational bottleneck is lost revenue; every security vulnerability is a looming catastrophe. At <strong>Sisizathu Hub</strong>, we do not merely provide IT support; we engineer the technological backbone of your future empire, transforming digital complexity into your ultimate competitive advantage.
+        </p>
+        <p>
+          Imagine a technological ecosystem so robust and meticulously calibrated that your absolute focus remains solely on scaling your vision. Our military-grade cybersecurity protocols—powered by <span className="highlight">AI-driven threat detection</span> and exhaustive vulnerability assessments—stand as an impenetrable fortress around your most valuable corporate assets. But defensive architecture is merely the baseline of our offering.
+        </p>
+        <p>
+          To truly outpace market competition, you require bespoke software solutions that breathe life into your operational workflows, eliminating friction and unlocking exponential workforce productivity. From high-availability, lightning-fast web hosting that ensures your brand's digital presence never sleeps, to enterprise-tier commercial printing that makes your physical footprint as commanding as your virtual one, we are the catalyst for your aggressive evolution.
+        </p>
+        <p>
+          We understand that behind every data point, server node, and line of code lies the living heartbeat of your business. Our multidisciplinary team of elite engineers, cybersecurity veterans, and strategic visionaries partner intimately with you to navigate the unknown with absolute mathematical certainty. Command your market. Secure your legacy. Welcome to the new global standard of enterprise excellence.
+        </p>
+      </MarketingCopy>
+    </SectionWrapper>
   );
 }
