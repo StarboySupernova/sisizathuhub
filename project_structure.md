@@ -102,11 +102,126 @@
 │   │   ├── 📁 contexts
 │   │   │   └── 🟨 searchModalContext.js
 │   │   ├── 🖼️ images
+│   │   │   ├── 📁 svgs
+│   │   │   │   ├── 📄 analytics.png
+│   │   │   │   ├── 📄 analytics.svg
+│   │   │   │   ├── 📄 android.png
+│   │   │   │   ├── 📄 android.svg
+│   │   │   │   ├── 📄 aws.png
+│   │   │   │   ├── 📄 aws.svg
+│   │   │   │   ├── 📄 c#.png
+│   │   │   │   ├── 📄 c#.svg
+│   │   │   │   ├── 📄 c++.png
+│   │   │   │   ├── 📄 c++.svg
+│   │   │   │   ├── 📄 codeigniter.png
+│   │   │   │   ├── 📄 codeigniter.svg
+│   │   │   │   ├── 📄 figma.png
+│   │   │   │   ├── 📄 figma.svg
+│   │   │   │   ├── 📄 firebase.png
+│   │   │   │   ├── 📄 firebase.svg
+│   │   │   │   ├── 📄 flutter.png
+│   │   │   │   ├── 📄 flutter.svg
+│   │   │   │   ├── 📄 gatsby.png
+│   │   │   │   ├── 📄 gatsby.svg
+│   │   │   │   ├── 📄 git.png
+│   │   │   │   ├── 📄 git.svg
+│   │   │   │   ├── 📄 github.png
+│   │   │   │   ├── 📄 graphql.png
+│   │   │   │   ├── 📄 graphql.svg
+│   │   │   │   ├── 📄 html5.png
+│   │   │   │   ├── 📄 html5.svg
+│   │   │   │   ├── 📄 jamstack.png
+│   │   │   │   ├── 📄 jamstack.svg
+│   │   │   │   ├── 📄 java.png
+│   │   │   │   ├── 📄 java.svg
+│   │   │   │   ├── 📄 js.png
+│   │   │   │   ├── 📄 js.svg
+│   │   │   │   ├── 📄 kotlin.png
+│   │   │   │   ├── 📄 kotlin.svg
+│   │   │   │   ├── 📄 laravel.png
+│   │   │   │   ├── 📄 laravel.svg
+│   │   │   │   ├── 📄 net.png
+│   │   │   │   ├── 📄 net.svg
+│   │   │   │   ├── 📄 netlify2.png
+│   │   │   │   ├── 📄 netlify2.svg
+│   │   │   │   ├── 📄 networkx.png
+│   │   │   │   ├── 📄 networkx.svg
+│   │   │   │   ├── 📄 nitro.png
+│   │   │   │   ├── 📄 nitro.svg
+│   │   │   │   ├── 📄 nodejs.png
+│   │   │   │   ├── 📄 nodejs.svg
+│   │   │   │   ├── 📄 npm2.png
+│   │   │   │   ├── 📄 npm2.svg
+│   │   │   │   ├── 📄 react.png
+│   │   │   │   ├── 📄 react.svg
+│   │   │   │   ├── 📄 reactnative.png
+│   │   │   │   ├── 📄 reactnative.svg
+│   │   │   │   ├── 📄 realm.png
+│   │   │   │   ├── 📄 realm.svg
+│   │   │   │   ├── 📄 redux.png
+│   │   │   │   ├── 📄 redux.svg
+│   │   │   │   ├── 🧠 sanity.png
+│   │   │   │   ├── 🧠 sanity.svg
+│   │   │   │   ├── 📄 selenium.png
+│   │   │   │   ├── 📄 selenium.svg
+│   │   │   │   ├── 📄 socketio.png
+│   │   │   │   ├── 📄 socketio.svg
+│   │   │   │   ├── 📄 solidjs.png
+│   │   │   │   ├── 📄 solidjs.svg
+│   │   │   │   ├── 📄 sqlite.png
+│   │   │   │   ├── 📄 sqlite.svg
+│   │   │   │   ├── 📄 stackblitz.png
+│   │   │   │   ├── 📄 stackblitz.svg
+│   │   │   │   ├── 📄 stripe.png
+│   │   │   │   ├── 📄 stripe.svg
+│   │   │   │   ├── 📄 supabase.png
+│   │   │   │   ├── 📄 supabase.svg
+│   │   │   │   ├── 📄 sveltejs.png
+│   │   │   │   ├── 📄 sveltejs.svg
+│   │   │   │   ├── 📄 swift.png
+│   │   │   │   ├── 📄 swift.svg
+│   │   │   │   ├── 🌬️ tailwindcss.png
+│   │   │   │   ├── 🌬️ tailwindcss.svg
+│   │   │   │   ├── 📄 tencentcloud.png
+│   │   │   │   ├── 📄 tencentcloud.svg
+│   │   │   │   ├── 📄 tensorflow.png
+│   │   │   │   ├── 📄 tensorflow.svg
+│   │   │   │   ├── 📄 terraform.png
+│   │   │   │   ├── 📄 terraform.svg
+│   │   │   │   ├── 📄 typescript.png
+│   │   │   │   ├── 📄 typescript.svg
+│   │   │   │   ├── 📄 unity.png
+│   │   │   │   ├── 📄 unity.svg
+│   │   │   │   ├── 📄 unsplash.png
+│   │   │   │   ├── 📄 unsplash.svg
+│   │   │   │   ├── 📄 v8.png
+│   │   │   │   ├── 📄 v8.svg
+│   │   │   │   ├── 📄 vapor.png
+│   │   │   │   ├── 📄 vapor.svg
+│   │   │   │   ├── 📄 visualstudio.png
+│   │   │   │   ├── 📄 visualstudio.svg
+│   │   │   │   ├── 📄 webstorm.png
+│   │   │   │   ├── 📄 webstorm.svg
+│   │   │   │   ├── 📄 windows8.svg
+│   │   │   │   ├── 📄 wordpress.png
+│   │   │   │   ├── 📄 wordpress.svg
+│   │   │   │   ├── 📄 xamarin.png
+│   │   │   │   ├── 📄 xamarin.svg
+│   │   │   │   ├── 📄 xcode.png
+│   │   │   │   ├── 📄 xcode.svg
+│   │   │   │   ├── 📄 yaml.png
+│   │   │   │   ├── 📄 yaml.svg
+│   │   │   │   ├── 📄 yarn.png
+│   │   │   │   ├── 📄 yarn.svg
+│   │   │   │   ├── 📄 zig.png
+│   │   │   │   └── 📄 zig.svg
+│   │   │   ├── 📄 background.svg
 │   │   │   ├── 📄 demt.ico.jpg
 │   │   │   ├── 📄 hero1.jpg
 │   │   │   ├── 📄 hero2.png
 │   │   │   ├── 📄 hero3.jpg
 │   │   │   ├── 📄 hero4.jpg
+│   │   │   ├── 📄 sisizathuhub.jpg
 │   │   │   └── 📄 sisizathulogo.png
 │   │   ├── 📑 pages
 │   │   │   ├── 🟨 404.js
@@ -3832,11 +3947,10 @@ function FeaturedBlogs() {
   return (
     <FeaturedBlogsStyles>
       <SectionTitle className="centre__text">
-        Upcoming News, Updates & Events
+        The Pulse of Digital Evolution
       </SectionTitle>
       <ParagraphText className="featuredBlogs__text">
-        Stay informed with the latest updates on Sisizathu Hub's projects, events,
-        and initiatives.
+        Technology never stands still, and neither should your business. Explore the projects, partnerships, and strategic initiatives that are redefining how Sisizathu Hub scales and secures the enterprises of tomorrow.
       </ParagraphText>
       <BlogGrid blogs={spotlightBlogs} />
     </FeaturedBlogsStyles>
@@ -3845,8 +3959,6 @@ function FeaturedBlogs() {
 
 export default FeaturedBlogs;
 
-/// colors
-/// #1ff4b4 - light green, #2c313e - dark bluish, #cbdd46 - gold
 
 ```
 ## `web\src\components\homePage\HeroSection.js`
@@ -4739,21 +4851,46 @@ export default SEO;
 ```
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
-import { 
-  FaShieldAlt, FaCode, FaServer, FaCloud, FaDatabase, 
-  FaMobileAlt, FaLock, FaNetworkWired, FaLaptopCode, FaGlobe, 
-  FaBrain, FaCogs, FaWifi, FaSatelliteDish, FaMicrochip 
-} from 'react-icons/fa';
 
-const SphereContainer = styled.div`
+// This wrapper uses a clearfix to ensure the floated elements don't collapse
+const SectionWrapper = styled.div`
+  margin: 2rem 0;
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+`;
+
+// By setting float: left and shape-outside: circle, the text organically wraps around the 3D globe!
+const SphereFloatContainer = styled.div`
+  float: left;
+  /* Use a fluid width that responds to screen size */
+  width: 35%; 
+  min-width: 250px;
+  aspect-ratio: 1 / 1;
+  /* Shape-outside stays relative to the container size */
+  shape-outside: circle(48%);
+  margin-right: 3rem;
+  margin-bottom: 1rem;
   position: relative;
-  width: 100%;
-  height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  margin: 3rem 0;
+  
+  /* Reduce size slightly for tablet/smaller screens to keep text legible */
+  @media (max-width: 900px) {
+    width: 40%;
+    min-width: 200px;
+    margin-right: 2rem;
+  }
+
+  /* On very small phones, we keep the float but shrink the sphere significantly */
+  @media (max-width: 480px) {
+    width: 45%;
+    min-width: 150px;
+    margin-right: 1.5rem;
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -4761,50 +4898,90 @@ const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
   
-  svg {
-    width: 35px;
-    height: 35px;
-    filter: drop-shadow(0 0 8px rgba(0, 174, 239, 0.8));
+  img {
+    width: clamp(18px, 4vw, 28px);  /* Will automatically shrink between 18px and 28px */
+    height: clamp(18px, 4vw, 28px);
+    filter: drop-shadow(0 0 5px rgba(0, 174, 239, 0.6));
+    opacity: 0.8;
   }
 `;
 
-// Math logic directly from your iOS algorithm!
+const MarketingCopy = styled.div`
+  font-size: 1.65rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: justify;
+
+  h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(to right, #ffffff, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  p {
+    margin-bottom: 1.8rem;
+  }
+
+  strong {
+    color: var(--white);
+    font-weight: 700;
+  }
+  
+  .highlight {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    text-align: left;
+  }
+`;
+
+// Math logic for sphere distribution
 const generatePoints = (count) => {
   const points =[];
   const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-
   for (let i = 0; i < count; i++) {
     const yRatio = 1 - (i / Math.max(1, count - 1)) * 2;
     const radiusAtY = Math.sqrt(1 - yRatio * yRatio);
     const theta = goldenAngle * i;
-
     const x = radiusAtY * Math.cos(theta);
     const z = radiusAtY * Math.sin(theta);
-
     points.push({ x, y: yRatio, z });
   }
   return points;
 };
 
-// You can swap these with your own custom imported SVG images!
-const svgsList =[
-  <FaShieldAlt />, <FaCode />, <FaServer />, <FaCloud />, <FaDatabase />, 
-  <FaMobileAlt />, <FaLock />, <FaNetworkWired />, <FaLaptopCode />, <FaGlobe />,
-  <FaBrain />, <FaCogs />, <FaWifi />, <FaSatelliteDish />, <FaMicrochip />,
-  <FaShieldAlt />, <FaCode />, <FaServer />, <FaCloud />, <FaDatabase />
-];
-
 export default function TechSphere() {
   const [rotation, setRotation] = useState(0);
+  const [iconPaths, setIconPaths] = useState([]);
   const requestRef = useRef();
-  
-  // Create 20 points
-  const points = useRef(generatePoints(svgsList.length));
+
+  // Load all SVGs from your local folder
+  useEffect(() => {
+    try {
+      const context = require.context('../images/svgs', false, /\.svg$/);
+      const paths = context.keys().map(context);
+      setIconPaths(paths);
+    } catch (err) {
+      console.error("Could not find SVGs in folder. Ensure path is correct.", err);
+    }
+  }, []);
+
+  const points = useRef([]);
+  if (points.current.length !== iconPaths.length) {
+    points.current = generatePoints(iconPaths.length);
+  }
 
   const animate = time => {
-    setRotation(time * 0.0005); // Controls the speed of the spin
+    setRotation(time * 0.0002); // Elegant, slow rotation
     requestRef.current = requestAnimationFrame(animate);
   };
 
@@ -4813,36 +4990,79 @@ export default function TechSphere() {
     return () => cancelAnimationFrame(requestRef.current);
   },[]);
 
-  return (
-    <SphereContainer>
-      {points.current.map((point, i) => {
-        // Apply 3D Rotation Matrix
-        const rotatedX = point.x * Math.cos(rotation) - point.z * Math.sin(rotation);
-        const rotatedZ = point.x * Math.sin(rotation) + point.z * Math.cos(rotation);
-        
-        // Apply Perspective Projection
-        const perspective = 300 / (300 + rotatedZ * 140); // 140 is the radius
-        const screenX = rotatedX * 140 * perspective;
-        const screenY = point.y * 140 * perspective;
-        
-        const scale = Math.max(0.1, perspective);
-        const opacity = perspective > 1 ? 1 : 0.2 + (perspective * 0.5);
-        const zIndex = Math.floor(perspective * 100);
+  if (iconPaths.length === 0) return null;
 
-        return (
-          <IconWrapper
-            key={i}
-            style={{
-              transform: `translate3d(${screenX}px, ${screenY}px, 0) scale(${scale})`,
-              opacity: opacity,
-              zIndex: zIndex
-            }}
-          >
-            {svgsList[i % svgsList.length]}
-          </IconWrapper>
-        );
-      })}
-    </SphereContainer>
+  return (
+    <SectionWrapper>
+      <SphereFloatContainer>
+        {points.current.map((point, i) => {
+          const rotatedX =
+            point.x * Math.cos(rotation) - point.z * Math.sin(rotation);
+          const rotatedZ =
+            point.x * Math.sin(rotation) + point.z * Math.cos(rotation);
+
+          const radius =
+            window.innerWidth > 900 ? 180 : window.innerWidth > 480 ? 120 : 80;
+
+          const perspective = 350 / (350 + rotatedZ * radius);
+          const screenX = rotatedX * radius * perspective;
+          const screenY = point.y * radius * perspective;
+
+          const scale = Math.max(0.1, perspective);
+          const opacity = perspective > 1 ? 1 : 0.1 + perspective * 0.6;
+          const zIndex = Math.floor(perspective * 100);
+
+          return (
+            <IconWrapper
+              key={i}
+              style={{
+                transform: `translate3d(${screenX}px, ${screenY}px, 0) scale(${scale})`,
+                opacity: opacity,
+                zIndex: zIndex,
+              }}
+            >
+              <img src={iconPaths[i].default || iconPaths[i]} alt="tech icon" />
+            </IconWrapper>
+          );
+        })}
+      </SphereFloatContainer>
+
+      <MarketingCopy>
+        <h2>Architecting the Digital Dominance of Tomorrow.</h2>
+        <p>
+          At{" "}
+          <span className="highlight">Sisizathu Hub</span>, we do not merely
+          provide IT support; we engineer the technological backbone of your
+          future empire, transforming digital complexity into your ultimate
+          competitive advantage.
+        </p>
+        <p>
+          We create technological ecosystems with a focus on robustness and meticulous
+          calibration such that your absolute focus remains solely on scaling your
+          vision. Our extensive cybersecurity protocols, powered by battle-tested threat detection and
+          exhaustive vulnerability assessments, stand as an impenetrable fortress
+          around your most valuable corporate assets. But defensive architecture
+          is merely the baseline of our offering.
+        </p>
+        <p>
+          To help our clients truly outpace market competition, we offer bespoke software
+          solutions that breathe life into operational workflows,
+          eliminating friction and unlocking exponential workforce productivity.
+          From high-availability, lightning-fast web hosting that ensures your
+          brand's digital presence never sleeps, to enterprise-tier commercial
+          printing that makes your physical footprint as commanding as your
+          virtual one, we are the catalyst for your aggressive evolution.
+        </p>
+        <p>
+          We understand that behind every data point, server node, and line of
+          code lies the living heartbeat of your business. Our multidisciplinary
+          team of elite engineers, cybersecurity veterans, and strategic
+          visionaries partner intimately with you to navigate the unknown with
+          absolute mathematical certainty. Command your market. Secure your
+          legacy. Welcome to the new global standard of enterprise excellence.
+        </p>
+      </MarketingCopy>
+    </SectionWrapper>
   );
 }
 ```
@@ -5017,8 +5237,8 @@ import FeaturedBlogs from "../components/homePage/FeaturedBlogs";
 import HeroSection from "../components/homePage/HeroSection";
 import TopCategories from "../components/homePage/TopCategories";
 import ContactSection from "../components/homePage/ContactSection";
-import TechSphere from "../components/homePage/TechSphere";
-import SectionDivider from "../components/SectionDivider"; // <-- Divider
+import TechSphere from "../components/TechSphere"; // Corrected path
+import SectionDivider from "../components/SectionDivider"; 
 import SEO from "../components/seo";
 
 const IndexPage = () => (
@@ -5027,13 +5247,6 @@ const IndexPage = () => (
     
     <HeroSection />
     
-    <SectionDivider />
-
-    {/* New Sphere Section */}
-    <div className="container">
-      <TechSphere />
-    </div>
-
     <SectionDivider />
     
     <div className="container">
@@ -5051,8 +5264,12 @@ const IndexPage = () => (
     <div className="container">
       <ContactSection />
     </div>
-    
+
     <SectionDivider />
+
+    <div className="container">
+      <TechSphere />
+    </div>
   </>
 );
 
@@ -5568,6 +5785,7 @@ export const FooterStyles = styled.footer`
 ## `web\src\styles\GlobalStyles.js`
 ```
 import { createGlobalStyle } from 'styled-components';
+import bgImage from '../images/background.svg'; 
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -5581,7 +5799,7 @@ const GlobalStyles = createGlobalStyle`
     --secondary: #007BFF;
     --darkBlue: #0A1128;
     --darkPurple: #1A0B2E;
-    --black-1: #1a1a1a;
+    --black-1: #060910;
     --black-2: #0B1325;
     --white-1: #E2E8F0;
     --gray: #8A98B0;
@@ -5600,12 +5818,31 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
     width: 100%;
     font-family: 'Inter', sans-serif;
-    
-    /* Premium tech gradient background */
-    background: #060910 radial-gradient(circle at 15% 50%, rgba(0, 174, 239, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(0, 123, 255, 0.08), transparent 25%);
-    background-attachment: fixed;
-    
     color: var(--white);
+
+    /* 2. THE MULTI-LAYERED BACKGROUND */
+    background-color: #060910;
+    background-image: 
+      /* Top Layer: The Tech Grid */
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      /* Second Layer: Cyan/Blue Radial Glows */
+      radial-gradient(at 0% 0%, rgba(0, 174, 239, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(0, 123, 255, 0.15) 0px, transparent 50%),
+      /* Third Layer: Dark Gradient Overlay to ensure white text remains readable over the bright bottom of your SVG */
+      linear-gradient(to bottom, rgba(6, 9, 16, 0.6), rgba(6, 9, 16, 0.95)),
+      /* Bottom Layer: Your SVG Image */
+      url(${bgImage});
+      
+    background-size: 
+      40px 40px, 40px 40px, /* Sizing for the grid */
+      100% 100%, 100% 100%, /* Sizing for the glows */
+      100% 100%,            /* Sizing for the dark overlay */
+      cover;                /* 'cover' ensures the SVG stretches and compresses perfectly to the screen */
+      
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 
   a {

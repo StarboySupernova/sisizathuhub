@@ -45,7 +45,6 @@ const GlobalStyles = createGlobalStyle`
       radial-gradient(at 100% 0%, rgba(0, 123, 255, 0.15) 0px, transparent 50%),
       /* Third Layer: Dark Gradient Overlay to ensure white text remains readable over the bright bottom of your SVG */
       linear-gradient(to bottom, rgba(6, 9, 16, 0.6), rgba(6, 9, 16, 0.95)),
-      /* Bottom Layer: Your SVG Image */
       url(${bgImage});
       
     background-size: 

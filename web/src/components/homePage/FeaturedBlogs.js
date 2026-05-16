@@ -78,5 +78,3 @@ function FeaturedBlogs() {
 
 export default FeaturedBlogs;
 
-/// colors
-/// #1ff4b4 - light green, #2c313e - dark bluish, #cbdd46 - gold

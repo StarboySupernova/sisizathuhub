@@ -181,7 +181,7 @@ function ContactSection() {
   };
 
   return (
-    <ContactSectionStyles>
+    <ContactSectionStyles id="contact-section">
       <div className="quote-form-container">
         {isSubmitted ? (
           <div className="success-message">
